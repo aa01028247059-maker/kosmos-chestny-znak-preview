@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Задание 1 — «Упаковка и маркировка» (предпросмотр)</title>
+  <!-- CSS темы (на сайте уже подключен на странице услуги) -->
+  <link rel="stylesheet" href="../vendor/single_services.css">
+  <!-- Подключить на странице /services/upakovka-i-markirovka-tovara/ ПОСЛЕ single_services.css -->
+  <link rel="stylesheet" href="../css/chz-services.css">
+  <style>
+    /* ===== Только предпросмотр (pv-), на сайт не переносится ===== */
+    body { padding-top: 0; }
+    .pv-legend { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 12px 24px;
+      background: #fff; border-bottom: 1px solid #ccd4de; font: 400 13px/1.5 "Manrope", sans-serif; color: #242a33; }
+    .pv-legend b { font-weight: 700; margin-right: auto; }
+    .pv-label { max-width: 1300px; margin: 0 auto; padding: 24px 10px 0; font: 600 12px/1.4 "Manrope", sans-serif;
+      letter-spacing: .1em; text-transform: uppercase; color: #545b66; }
+    .pv-label--new { color: #c42624; }
+    .pv-label span { display: block; margin-top: 4px; font-weight: 400; letter-spacing: 0; text-transform: none; line-height: 1.6; }
+    .pv-new { outline: 2px dashed #c42624; outline-offset: 24px; }
+    mark.pv-edit { background: #f2f7fc; color: inherit; box-shadow: 0 0 0 2px #265380; border-radius: 1px; }
+    mark.pv-prop { background: #fff; color: inherit; outline: 2px dashed #c42624; outline-offset: 1px; }
+    del.pv-del { color: #c42624; text-decoration: line-through; }
+    .pv-sample { display: inline-block; padding: 0 4px; }
+    @media (max-width: 640px) { .pv-label { padding: 24px 16px 0; } .pv-new { outline-offset: 8px; } .pv-legend { padding: 12px 16px; } }
+  </style>
+</head>
+<body>
+
+<div class="pv-legend">
+  <b>Задание 1 · предпросмотр</b>
+  <span><mark class="pv-edit pv-sample">рамка</mark> правка по ТЗ / общим требованиям</span>
+  <span><del class="pv-del">зачеркнуто</del> удалить</span>
+  <span><mark class="pv-prop pv-sample">пунктир</mark> наша формулировка — согласовать</span>
+  <span>FAQ: вопросы с правками раскрыты; на сайте аккордеон работает по логике темы</span>
+</div>
+
+<main>
+
+<!-- ======================================================================
+     Первый экран (существующий). Правки: п. 6 общих требований.
+     ====================================================================== -->
+<div class="pv-label">Существующая секция — первый экран<span>п. 6: «работаем с любыми группами товаров» ≈ «работаем со всеми категориями товаров»; коды ТН ВЭД убраны из наносимых обозначений (задание 1, испр. 1). alt фото: «Космос-Логистик» в кавычках (п. 3).</span></div>
+<section class="service_section">
+  <div class="first_screen">
+    <div class="container">
+      <div class="first_screen_content">
+        <h1 class="first_screen_title">Упаковка и маркировка</h1>
+        <!-- ПРАВКА (п. 6, предложение): было «Работаем с любыми группами товаров, включая…» -->
+        <p class="first_screen_subtitle">Подготовим ваши товары к хранению, отгрузке или продаже на маркетплейсах. Работаем с <del class="pv-del">любыми группами</del> <mark class="pv-prop">товарами</mark>, включая продукцию, подлежащую обязательной маркировке</p>
+        <ul class="first_screen_items">
+          <li class="first_screen_item"><p>Используем качественные упаковочные материалы и обеспечиваем паллетирование, а так же правильное размещение груза</p></li>
+          <!-- ПРАВКА (п. 6 + задание 1, испр. 1, предложение): удалить «и продукцией, требующей кодов ТН ВЭД» -->
+          <li class="first_screen_item"><p>Наносим внутрискладскую, индивидуальную и обязательную маркировку. Работаем с товарами для маркетплейсов (Ozon, Wildberries)<del class="pv-del"> и продукцией, требующей кодов ТН ВЭД</del></p></li>
+          <li class="first_screen_item"><p>Выполняем комплексную грузопереработку на одном складе: упаковка, маркировка, хранение и транспортировка конечному потребителю</p></li>
+        </ul>
+        <a href="#callback-popup" class="btn" data-fancybox>Оставить заявку</a>
+      </div>
+      <div class="first_screen_image">
+        <!-- ПРАВКА alt (п. 3): «Космос-Логистик» → «Космос-Логистик» в кавычках -->
+        <img src="https://kosmoslogistic.com/wp-content/uploads/2026/10/pereupakovka-tovara-kosmos-logistik-moskva-02.png?v=1791381963" alt="Переупаковка повреждённого товара с защитными материалами на складе «Космос-Логистик» в Москве." loading="eager" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     «Маркировка товаров» (существующая) + card-helper с определением поклажедателя.
+     ====================================================================== -->
+<div class="pv-label">Существующая секция — «Маркировка товаров»<span>п. 1: «клиент» → «поклажедатель»; задание 1, испр. 1: удалить «коды ТН ВЭД»; п. 6/п. 7: «исключает ошибки» → «снижает риск ошибок»; п. 2: определение поклажедателя при первом употреблении — новый card-helper в конце блока.</span></div>
+<section class="service_section">
+  <div class="block_with_el_with_blue_top">
+    <div class="container">
+      <h2>Маркировка товаров</h2>
+      <!-- ПРАВКА (вёрстка): класс chz-measure — ширина текста по двум карточкам -->
+      <p class="subtitle chz-measure">Маркировка — неотъемлемая часть упаковки, которая связывает груз со всеми сопроводительными документами. Она обеспечивает учет, контроль и идентификацию товара на всех этапах складской обработки, а также информирует участников логистического процесса и конечных потребителей о свойствах и характеристиках продукции</p>
+      <div class="block_with_el_with_blue_top_items items-3">
+        <div class="block_with_el_with_blue_top_item">
+          <div class="block_with_el_with_blue_top_item_top">
+            <h3>Внутрискладская маркировка</h3>
+            <p>Обеспечивает учет и контроль товара на всех этапах его нахождения на складе</p>
+          </div>
+          <div class="block_with_el_with_blue_top_item_bottom">
+            <div class="block_with_el_with_blue_top_item_bottom_inner">
+              <ul>
+                <li>номер поставки</li>
+                <!-- ПРАВКА (п. 1): было «наименование клиента» -->
+                <li>наименование <mark class="pv-edit">поклажедателя</mark></li>
+                <li>артикул товара</li>
+                <li>серийный номер, обозначающий место внутри партии</li>
+              </ul>
+              <div class="block_with_el_with_blue_top_item_bottom_text">
+                <!-- ПРАВКА (п. 6/7, предложение): было «и исключает ошибки при комплектации заказов» -->
+                <p>Такая маркировка позволяет точно идентифицировать каждую единицу товара в WMS-системе, отслеживать ее перемещение и <mark class="pv-prop">снижает риск ошибок</mark> при комплектации заказов. Груз легко найти, проверить и подготовить к отправке в любой момент</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block_with_el_with_blue_top_item">
+          <div class="block_with_el_with_blue_top_item_top">
+            <h3>Индивидуальная маркировка</h3>
+            <p>Может включать любые обозначения, необходимые для идентификации товара</p>
+          </div>
+          <div class="block_with_el_with_blue_top_item_bottom">
+            <div class="block_with_el_with_blue_top_item_bottom_inner">
+              <ul>
+                <li>транспортные знаки</li>
+                <li>товарные и экологические обозначения</li>
+                <li>манипуляционные знаки: «хрупкое», «беречь от влаги», «верх», «не кантовать» и другие</li>
+                <li>предупреждающие надписи (если нанесение знаков невозможно)</li>
+              </ul>
+              <div class="block_with_el_with_blue_top_item_bottom_text">
+                <p>Индивидуальная маркировка помогает донести до участников логистической цепи и конечных потребителей важную информацию о свойствах товара и правилах обращения с ним, снижая риски повреждения при перевозке и хранении</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block_with_el_with_blue_top_item">
+          <div class="block_with_el_with_blue_top_item_top">
+            <h3>Обязательная маркировка</h3>
+            <p>Товары включенные в перечень Правительством РФ, подлежащие обязательной маркировке</p>
+          </div>
+          <div class="block_with_el_with_blue_top_item_bottom">
+            <div class="block_with_el_with_blue_top_item_bottom_inner">
+              <ul>
+                <!-- ПРАВКА (задание 1, испр. 1): удалить пункт «коды ТН ВЭД» -->
+                <li><del class="pv-del">коды ТН ВЭД</del></li>
+                <li>другие регламентированные обозначения в соответствии с законодательством</li>
+              </ul>
+              <div class="block_with_el_with_blue_top_item_bottom_text">
+                <!-- ПРАВКА (п. 6/7, предложение): было «и исключает ошибки при комплектации заказов» -->
+                <p>Такая маркировка позволяет точно идентифицировать каждую единицу товара в WMS-системе, отслеживать ее перемещение и <mark class="pv-prop">снижает риск ошибок</mark> при комплектации заказов. Груз легко найти, проверить и подготовить к отправке в любой момент</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== CHZ:BEGIN task1-helper =====================
+           Card-helper: определение поклажедателя (общие требования, п. 2).
+           Вставить в конец секции «Маркировка товаров», внутрь .container, после .block_with_el_with_blue_top_items.
+           ================================================================== -->
+      <div class="chz-card-helper">
+        <p class="chz-card-helper__text"><b>Поклажедатель</b> — организация, индивидуальный предприниматель или физическое лицо, передающие товар на склад для хранения и складской обработки</p>
+        <p class="chz-card-helper__note">Термин «поклажедатель» используется для стороны, передающей вещь хранителю по договору хранения</p>
+      </div>
+      <!-- ====================== CHZ:END task1-helper ====================== -->
+    </div>
+  </div>
+</section>
+
+<div class="pv-label pv-label--new">Новый блок — задание 1<span>Копировать в шаблон всё между метками CHZ:BEGIN task1-block и CHZ:END task1-block. Абзац с определением поклажедателя убран — определение в card-helper выше.</span></div>
+
+<!-- ======================== CHZ:BEGIN task1-block ========================
+     Задание 1. Новый блок на /services/upakovka-i-markirovka-tovara/
+     Место: после секции «Маркировка товаров», до секции «Какие товары подлежат обязательной маркировке».
+     Стили: design/css/chz-services.css (подключить после single_services.css).
+     FAQ-аккордеон — компонент темы .faq_items (работает на JS темы).
+     ======================================================================== -->
+<section class="service_section chz-s pv-new" id="chestny-znak-codes">
+  <div class="container">
+    <h2>Работа с кодами маркировки «Честный ЗНАК»</h2>
+    <div class="chz-text">
+      <p>«Космос-Логистик» принимает товары с кодами Data Matrix и ведет поэкземплярный учет кодов маркировки в WMS. По заданию поклажедателя контроль выполняется при приемке, перед отгрузкой или на обоих этапах</p>
+      <p>Каждый код считывается терминалом сбора данных и сопоставляется с артикулом товара. При наличии необходимых данных и настроенного задания склад также учитывает партию и срок годности. Результаты сканирования автоматически фиксируются в WMS</p>
+    </div>
+
+    <ul class="chz-cards">
+      <li class="chz-card">
+        <img class="chz-card__icon" src="../wp-content/uploads/chz/icons/icn-scan.svg" alt="" width="24" height="24" aria-hidden="true">
+        <h3>Контроль кодов при приемке</h3>
+        <p>После выгрузки товар принимается по артикулам. Сотрудник склада сканирует Data Matrix каждой единицы терминалом сбора данных. WMS связывает код с артикулом, поставкой и поклажедателем. После завершения приемки и до размещения товара автоматически формируется входной реестр кодов</p>
+      </li>
+      <li class="chz-card">
+        <img class="chz-card__icon" src="../wp-content/uploads/chz/icons/icn-package-out.svg" alt="" width="24" height="24" aria-hidden="true">
+        <h3>Контроль кодов при комплектации</h3>
+        <p>Товар комплектуется по артикулам на основании заявки поклажедателя. После комплектации заказ переводится в WMS в операцию «Упаковка». На этом этапе выполняются дополнительная упаковка и обязательное сканирование кодов маркировки всех товарных единиц, вошедших в заказ</p>
+      </li>
+      <li class="chz-card">
+        <img class="chz-card__icon" src="../wp-content/uploads/chz/icons/icn-file-multiple.svg" alt="" width="24" height="24" aria-hidden="true">
+        <h3>Реестры XLSX и XML</h3>
+        <p>После приемки поклажедателю передается реестр входящих кодов. После формирования заказа создается отдельный реестр кодов, вошедших в конкретную отгрузку. Реестры предоставляются в формате XLSX или в машиночитаемом формате XML</p>
+      </li>
+      <li class="chz-card">
+        <img class="chz-card__icon" src="../wp-content/uploads/chz/icons/icn-alert-triangle.svg" alt="" width="24" height="24" aria-hidden="true">
+        <h3>Ошибки и карантинная зона</h3>
+        <p>Товар с отсутствующей или поврежденной этикеткой, дублем кода либо несоответствием кода артикулу помещается в карантинную зону. Дальнейшие действия выполняются по заданию поклажедателя: повторная проверка, переупаковка, перемаркировка, возврат, списание или другой согласованный сценарий</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Таблица на тёмно-синей полосе (компонент темы .services-table, без H2), ширина 10 колонок по центру -->
+  <div class="services-table chz-band">
+    <div class="container">
+    <div class="chz-table">
+      <table>
+        <thead>
+          <tr><th scope="col">Режим работы</th><th scope="col">Операции склада</th><th scope="col">Результат</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Контроль на входе</td><td>Поштучное сканирование при приемке, сопоставление с артикулом, фиксация в WMS</td><td>Входной реестр XLSX или XML</td></tr>
+          <tr><td>Контроль на выходе</td><td>Сканирование после комплектации в операции «Упаковка», привязка кодов к заказу</td><td>Реестр кодов конкретного заказа</td></tr>
+          <tr><td>Сквозной контроль</td><td>Сканирование при приемке и повторный контроль перед отгрузкой</td><td>История движения кода от поставки до заказа</td></tr>
+          <tr><td>Агрегация</td><td>Связь кодов единиц с коробом и паллетой по согласованной схеме</td><td>Реестр агрегированных упаковок</td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- «Обмен электронными документами»: заголовок и текст без подложки, ширина текста — 2 карточки -->
+    <div class="chz-text">
+      <h3>Обмен электронными документами</h3>
+      <!-- ТЗ, общие требования п. 10: перед публикацией подставить точное коммерческое название сервиса «Контур» -->
+      <p>В стандартной схеме «Космос-Логистик» передает поклажедателю реестры в формате XLSX или XML. По дополнительному соглашению возможен обмен электронными документами через оператора ЭДО «Контур». Виды документов, полномочия сторон, порядок подписания и передачи сведений в ГИС МТ согласовываются отдельно</p>
+    </div>
+
+    <!-- Ряд из двух колонок: слева CTA-карточка, справа изображение -->
+    <div class="chz-split chz-split--media">
+      <div class="chz-cta chz-cta--stack">
+        <div class="chz-cta__text">
+          <h3>Нужно проверить коды при приемке или отгрузке?</h3>
+          <p>Укажите товарную группу, количество единиц, количество артикулов и требуемые контрольные точки. Подготовим схему складской обработки и расчет стоимости</p>
+        </div>
+        <div class="chz-actions">
+          <a class="chz-link" href="task2-markirovka.html">Подробнее о маркировке «Честный ЗНАК» на складе</a>
+          <!-- Как остальные кнопки заявки на странице: открывает всплывающую форму темы -->
+          <a class="btn" href="#callback-popup" data-fancybox data-event="chestny_znak_calculation_click">Рассчитать обработку кодов</a>
+        </div>
+      </div>
+
+      <!-- ИЗОБРАЖЕНИЕ: по высоте CTA-карточки, object-fit: cover. Файлы — design/wp-content/uploads/chz/photos/
+           (1280×960 (4:3): WebP + JPG запасной). На сайте заменить пути на фактические из медиатеки. -->
+      <figure class="chz-figure chz-split__media">
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-scan-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-scan-1280.jpg" alt="Сканирование кода Data Matrix терминалом сбора данных на складе «Космос-Логистик»" width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+    </div>
+
+    <ul class="faq_items">
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-1" data-event="faq_open">Выполняется ли поштучное сканирование кодов?</button></h3>
+        <div class="faq_item_content" id="chz-faq-1"><div><p>Да. Код Data Matrix каждой маркированной единицы считывается терминалом сбора данных и фиксируется в WMS</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-2" data-event="faq_open">Можно заказать контроль только при приемке?</button></h3>
+        <div class="faq_item_content" id="chz-faq-2"><div><p>Да. После приемки и сканирования партии поклажедатель получает входной реестр кодов в формате XLSX или XML</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-3" data-event="faq_open">Можно заказать контроль только перед отгрузкой?</button></h3>
+        <div class="faq_item_content" id="chz-faq-3"><div><p>Да. Коды сканируются после комплектации в операции «Упаковка» и привязываются к конкретному заказу</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-4" data-event="faq_open">Что происходит с товаром, если код не считывается?</button></h3>
+        <div class="faq_item_content" id="chz-faq-4"><div><p>Товар помещается в карантинную зону до получения задания поклажедателя о дальнейших действиях</p></div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+<!-- ========================= CHZ:END task1-block ========================= -->
+
+<!-- ======================================================================
+     «Какие товары подлежат обязательной маркировке» (существующая).
+     ====================================================================== -->
+<div class="pv-label">Существующая секция — «Какие товары подлежат обязательной маркировке»<span>Задание 1, испр. 2: замена предложения. alt фото: «Космос логистик» → «Космос-Логистик» (п. 3).</span></div>
+<section class="service_section">
+  <div class="block_left_info_right_photo_briefly">
+    <div class="container">
+      <div class="block_left_info_right_photo_briefly_content" data-index="0">
+        <h2>Какие товары подлежат обязательной маркировке</h2>
+        <div>В соответствии с требованиями Правительства РФ, обязательная маркировка распространяется на следующие группы товаров:
+          <ul>
+            <li>Ювелирные изделия</li>
+            <li>Лекарственные препараты</li>
+            <li>Парфюмерная продукция (духи, туалетная вода)</li>
+            <li>Фотоаппараты и лампы-вспышки</li>
+            <li>Шины и покрышки</li>
+            <li>Пищевые продукты: мороженое, упакованная вода, сыры, молочная продукция со сроком годности более 40 дней</li>
+            <li>Товары легкой промышленности (одежда, обувь и др.)</li>
+            <li>Шубы из натурального меха</li>
+          </ul>
+          <!-- ПРАВКА (задание 1, испр. 2): было «Мы имеем опыт работы со всеми категориями маркируемых товаров, включая интеграцию с маркетплейсами Ozon и Wildberries.» -->
+          <del class="pv-del">Мы имеем опыт работы со всеми категориями маркируемых товаров, включая интеграцию с маркетплейсами Ozon и Wildberries.</del>
+          <mark class="pv-edit">Возможность приема и обработки определяется товарной группой, требованиями к хранению и действующим регламентом обязательной маркировки.</mark> Нанесем необходимые обозначения в соответствии с требованиями законодательства и ваших покупателей</div>
+      </div>
+      <div class="block_left_info_right_photo_briefly_image" data-index="1">
+        <!-- ПРАВКА alt (п. 3): было «Изображение маркировки Космос логистик» -->
+        <img src="https://kosmoslogistic.com/wp-content/uploads/2026/07/photo-up-mr-format.webp?v=1789223004" alt="Изображение маркировки «Космос-Логистик»" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     «Почему доверяют упаковку и маркировку нам» (существующая).
+     ====================================================================== -->
+<div class="pv-label" style="margin-top:0">Существующая секция — «Почему доверяют упаковку и маркировку нам»<span>п. 6/п. 7: «исключать ошибки» → «снижать риск ошибок». alt иконок: «Космос логистик» → «Космос-Логистик» (п. 3).</span></div>
+<section class="service_section">
+  <div class="dark_blue_block_with_white_elements cols-3">
+    <div class="container">
+      <h2>Почему доверяют упаковку и маркировку нам</h2>
+      <ul class="dark_blue_block_with_white_elements_items">
+        <li>
+          <img src="https://kosmoslogistic.com/wp-content/uploads/2026/07/icon-stroke-13.svg?v=1789223004" alt="Иконка" loading="lazy" decoding="async">
+          <h3>Полное сопровождение маркировки</h3>
+          <div class="dark_blue_block_with_white_elements_item_text"><p>Вам не нужно разбираться в видах маркировки  и следить за изменениями требований законодательства — мы берем это на себя. Достаточно сообщить тип товара и ваши пожелания, а наши специалисты подготовят груз к размещению на складе или отправке  с правильно нанесенной маркировкой</p>
+          <p>Работаем с товарами, подлежащими обязательной маркировке, включая интеграцию с маркетплейсами Ozon и Wildberries и другими</p></div>
+        </li>
+        <li>
+          <!-- ПРАВКА alt (п. 3): было «Иконка защиты Космос логистик» -->
+          <img src="https://kosmoslogistic.com/wp-content/uploads/2026/07/icon-stroke-3.svg?v=1789223004" alt="Иконка защиты «Космос-Логистик»" loading="lazy" decoding="async">
+          <h3>Комплексная защита груза  на всех этапах</h3>
+          <div class="dark_blue_block_with_white_elements_item_text"><p>Правильная упаковка сохраняет товарный вид продукции и защищает от повреждений  при транспортировке, погрузке и хранении</p>
+          <p>Используем качественные материалы: стрейч-пленку, пупырчатую пленку, картонные коробки разных размеров, обрешетку. Контролируем процесс упаковки на всех этапах</p></div>
+        </li>
+        <li>
+          <!-- ПРАВКА alt (п. 3): было «Иконка документов Космос логистик» -->
+          <img src="https://kosmoslogistic.com/wp-content/uploads/2026/07/icon-stroke-6.svg?v=1789223004" alt="Иконка документов «Космос-Логистик»" loading="lazy" decoding="async">
+          <h3>Точность и контроль благодаря WMS-системе</h3>
+          <!-- ПРАВКА (п. 6/7, предложение): было «и исключать ошибки при комплектации заказов» -->
+          <div class="dark_blue_block_with_white_elements_item_text"><p>Все операции с грузом фиксируются в системе учета. Каждой единице товара присваивается внутреннее обозначение, что позволяет точно идентифицировать ее, отслеживать перемещение по складу и <mark class="pv-prop">снижать риск ошибок</mark> при комплектации заказов</p>
+          <p>Вы в любой момент знаете, где находится ваш груз  и на каком этапе обработки</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     FAQ страницы (существующий). Правки: п. 6, задание 1 испр. 3.
+     ====================================================================== -->
+<div class="pv-label">Существующая секция — FAQ<span>Вопрос 2: стоп-фраза «наносим коды ТН ВЭД» (п. 6). Вопрос 4: задание 1, испр. 3. Открыты для просмотра. Те же правки — в JSON-LD FAQPage.</span></div>
+<section class="faq">
+  <div class="container">
+    <h2>FAQ по упаковке и маркировке товаров</h2>
+    <ul class="faq_items">
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="faq-panel-1">Какие материалы вы используете для упаковки?</button></h3>
+        <div class="faq_item_content" id="faq-panel-1"><div>
+          <p>Для упаковки товаров мы используем качественные материалы, соответствующие требованиям ГОСТов:</p>
+          <ul><li>стрейч-пленка</li><li>пупырчатая пленка</li><li>картонные коробки разных размеров</li><li>обрешетка для хрупких и ценных грузов</li></ul>
+        </div></div>
+      </li>
+      <li class="faq_item pv-open">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="faq-panel-2">Какие виды маркировки вы выполняете?</button></h3>
+        <div class="faq_item_content" id="faq-panel-2"><div>
+          <p>Мы выполняем три вида маркировки:</p>
+          <p><strong>Внутрискладскую</strong><br>Присваиваем грузу внутреннее обозначение для учета в WMS-системе</p>
+          <p><strong>Индивидуальную</strong><br>Наносим транспортные, товарные, экологические знаки, а также манипуляционные обозначения</p>
+          <!-- ПРАВКА (п. 6, стоп-фраза «наносим коды ТН ВЭД»): было «Наносим коды ТН ВЭД и другие регламентированные обозначения…» -->
+          <p><strong>Обязательную</strong><br>Наносим <del class="pv-del">коды ТН ВЭД и другие</del> регламентированные обозначения на товары, подлежащие обязательной маркировке</p>
+        </div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="faq-panel-3">Сколько стоит упаковка?</button></h3>
+        <div class="faq_item_content" id="faq-panel-3"><div>
+          <p>Стоимость упаковки зависит от типа товара и выбранных материалов. Базовые расценки:</p>
+          <ul><li>Упаковка короба от 8 рублей</li><li>Упаковка паллета (стрейч-пленка) от 90 рублей</li></ul>
+          <p>Точная стоимость рассчитывается индивидуально с учетом объема работ и дополнительных требований</p>
+        </div></div>
+      </li>
+      <li class="faq_item pv-open">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="faq-panel-4">Работаете ли вы с маркетплейсами?</button></h3>
+        <div class="faq_item_content" id="faq-panel-4"><div>
+          <!-- ПРАВКА (задание 1, испр. 3): было «Да, мы оказываем услуги маркетплейсам, в том числе Ozon и Wildberries.» -->
+          <p><del class="pv-del">Да, мы оказываем услуги маркетплейсам, в том числе Ozon и Wildberries.</del> <mark class="pv-edit">Да. Оказываем складские и фулфилмент-услуги продавцам, работающим на Ozon, Wildberries, Яндекс Маркете и других торговых площадках.</mark> Выполняем упаковку и маркировку в соответствии с требованиями площадок, а также осуществляем полный цикл фулфилмента: от приемки товара до отгрузки конечному покупателю</p>
+        </div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="faq-panel-5">Как заказать услуги упаковки и маркировки?</button></h3>
+        <div class="faq_item_content" id="faq-panel-5"><div>
+          <p>Позвоните нам по телефону или оставьте заявку на сайте. Менеджер уточнит параметры груза, ваши пожелания по упаковке и маркировке, рассчитает стоимость и согласует удобное время для приемки товара на склад</p>
+        </div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<script src="../js/chz-preview.js"></script>
+</body>
+</html>

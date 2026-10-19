@@ -1,0 +1,447 @@
+/* ==========================================================================
+   chz-services.css — страницы услуг «Честный ЗНАК» (задания 1–2)
+   Подключать ПОСЛЕ single_services.css темы devseopro.com.
+   Все значения выбраны из single_services.css — см. design/style_selection.md, раздел 1.
+   Глобально классы темы не переопределяются: правки действуют только внутри .chz-s
+   и в компонентах с префиксом chz-.
+   ========================================================================== */
+
+/* ---------- 1. Токены ---------- */
+:root {
+  /* Цвета: текст — не больше двух на светлом фоне */
+  --chz-s-text: #242a33;
+  --chz-s-text-2: #545b66;
+  --chz-s-inverse: #fff;
+  --chz-s-brand: #093159;
+  --chz-s-accent: #c42624;
+  --chz-s-marker: #265380;
+  --chz-s-surface: #f2f7fc;
+  --chz-s-border: #ccd4de;
+  --chz-s-white: #fff;
+  /* Новые токены (нет в теме) — утверждены по макету Figma UI-System, card-helper, 2026-10-18 */
+  --chz-s-bg-info: #ebfaff;        /* Figma: --bg-sys-inf */
+  --chz-s-border-accent: #3d6b99;  /* Figma: --brdr-scnd */
+
+  /* Типографика: размер / межстрочный / начертание */
+  --chz-s-font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --chz-s-h1: 700 40px/1.2 var(--chz-s-font);
+  --chz-s-h2: 700 32px/1.2 var(--chz-s-font);
+  --chz-s-h3: 700 22px/1.2 var(--chz-s-font);
+  --chz-s-h4: 700 16px/1.2 var(--chz-s-font);
+  --chz-s-lead: 500 18px/1.7 var(--chz-s-font);
+  --chz-s-body: 400 18px/1.4 var(--chz-s-font);
+  --chz-s-text-m: 400 16px/1.5 var(--chz-s-font);
+  --chz-s-caption: 400 14px/1.8 var(--chz-s-font);
+  --chz-s-h2-mb: 35px;
+
+  /* Отступы и формы */
+  --chz-s-gap: 25px;
+  --chz-s-pad: 24px;
+  --chz-s-pad-plate: 40px;
+  --chz-s-block: 50px;
+  /* Между подблоками внутри одной секции: больше --chz-s-block (50), меньше отступа секций (125).
+     Значение темы: .services-table { padding:64px 0 } → 40px на мобильном. */
+  --chz-s-subblock: 64px;
+  --chz-s-stack: 16px;
+  --chz-s-radius: 12px;
+  --chz-s-radius-btn: 8px;
+
+  /* Ширина текста = 2 карточки из ряда в 3 + промежуток между ними (8 из 12 колонок).
+     Та же арифметика, что у карточек темы: (100% - 2×25px) / 3. % — от ширины родителя,
+     поэтому у прямых детей .container край текста совпадает с краем второй карточки. */
+  --chz-s-measure: calc((100% - 50px) / 3 * 2 + 25px);
+
+  /* Неявная сетка темы: 12 колонок, промежуток 25px. N колонок = (N×100% + 25px×N − 300px) / 12.
+     10 колонок = отступ в 1 колонку с каждой стороны при центровке (1079px при контейнере 1300). */
+  --chz-s-span-10: calc((100% * 10 - 50px) / 12);
+}
+
+@media (max-width: 960px) {
+  :root {
+    --chz-s-h1: 700 32px/1.25 var(--chz-s-font);
+    --chz-s-block: 32px;
+    --chz-s-measure: none;   /* карточки в одну колонку — текст во всю ширину */
+    --chz-s-span-10: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --chz-s-h2: 700 24px/1.2 var(--chz-s-font);
+    --chz-s-h3: 700 20px/1.2 var(--chz-s-font);
+    --chz-s-lead: 500 16px/1.7 var(--chz-s-font);
+    --chz-s-body: 400 16px/1.4 var(--chz-s-font);
+    --chz-s-text-m: 400 14px/22px var(--chz-s-font);
+    --chz-s-h2-mb: 24px;   /* решение 2026-10-19: H2 → содержимое на мобильном 24 (у темы 32 спорит с отступом секций 50) */
+    --chz-s-gap: 16px;
+    --chz-s-pad: 16px;
+    --chz-s-pad-plate: 24px;
+    --chz-s-subblock: 40px;
+  }
+}
+
+/* ---------- 2. Обертка .chz-s: типографика внутри наших секций ---------- */
+/* Ставится на <section class="service_section chz-s"> и на .first_screen посадочной. */
+.chz-s { color: var(--chz-s-text); }
+.chz-s h1 { font: var(--chz-s-h1); color: var(--chz-s-text); }
+.chz-s h2 { font: var(--chz-s-h2); color: var(--chz-s-text); margin-bottom: var(--chz-s-h2-mb); }
+.chz-s h3 { font: var(--chz-s-h3); color: var(--chz-s-text); }
+.chz-s p,
+.chz-s .chz-list li { font: var(--chz-s-body); }
+/* Ссылки в тексте — как p a темы (#093159). Hover задает глобальное правило темы
+   a:not(.btn):not(.hero__btn):hover (#093159), оно перекрывает и p a:hover темы (красный). */
+.chz-s p a { color: var(--chz-s-brand); }
+
+/* Ограничение длины строки текстовых блоков (см. --chz-s-measure).
+   .chz-measure — утилита для элементов темы (например, p.subtitle в «Маркировке товаров»). */
+.chz-measure,
+.chz-text,
+.chz-card-helper,
+.chz-s .faq_item_content p { max-width: var(--chz-s-measure); }
+/* Внутри плашки % считается от плашки (контейнер − 2 отступа): возвращаем отступы в формулу,
+   чтобы правый край текста тоже совпал с краем второй карточки */
+.chz-plate p { max-width: calc((100% + 2 * var(--chz-s-pad-plate) - 50px) / 3 * 2 + 25px - var(--chz-s-pad-plate)); }
+@media (max-width: 960px) { .chz-plate p { max-width: none; } }
+
+/* Вводный текст под H2: абзацы через 15px, как p темы */
+.chz-text p { margin: 0; }
+.chz-text > * + *,
+.chz-text p + p { margin-top: 15px; }
+/* Список внутри текста — тот же шаг, что между абзацами (у .chz-list ниже по файлу margin: 0) */
+.chz-text > p + .chz-list,
+.chz-text > .chz-list + p { margin-top: 15px; }
+
+/* Второй уровень вложенного блока внутри секции (например, «Блок ЭДО» в задании 1) */
+.chz-s .chz-subblock { margin-top: var(--chz-s-block); }
+.chz-s .chz-subblock > h3 { margin-bottom: var(--chz-s-stack); }
+
+/* ---------- 3. Списки ---------- */
+/* Основа: .text_block ul li (квадрат 6px) и .first_screen li (галочка icon-stroke.svg) */
+.chz-list { list-style: none; margin: 0; padding: 0; }
+.chz-list li { position: relative; padding-left: 15px; }
+.chz-list li + li { margin-top: 15px; }
+.chz-list li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 6px; height: 6px; border-radius: 1px; background: var(--chz-s-marker);
+}
+.chz-list--check li { padding-left: 24px; }
+.chz-list--check li::before {
+  top: .45em; width: 12px; height: 9px; border-radius: 0; background: url("../wp-content/uploads/2026/08/icon-stroke.svg") no-repeat center / contain;
+}
+/* Нумерованный список без кругов (короткие перечни) */
+ol.chz-list { counter-reset: chz-ol; }
+ol.chz-list li { counter-increment: chz-ol; padding-left: 24px; }
+ol.chz-list li::before {
+  content: counter(chz-ol) "."; top: 0; width: auto; height: auto; background: none;
+  font-weight: 600; color: var(--chz-s-marker);
+}
+
+/* ---------- 4. Кнопки и ссылки ---------- */
+/* Кнопки — классы темы .btn / .btn.btn_grey. Здесь только раскладка и текстовая ссылка. */
+.chz-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--chz-s-stack); margin-top: 30px; }
+.chz-actions .btn { margin: 0; }
+@media (max-width: 640px) {
+  /* Как .block_with_el_with_blue_top .btn темы на мобильном: кнопка во всю ширину */
+  .chz-actions .btn { width: 100%; max-width: 100%; }
+}
+.chz-link {
+  display: inline;
+  font: 600 16px/22px var(--chz-s-font); color: var(--chz-s-brand);
+}
+/* Стрелка — продолжение текста: при переносе остается рядом с последним словом */
+.chz-link::after { content: "→"; display: inline-block; margin-left: 8px; transition: transform .2s ease; }
+/* Цвет при наведении не меняется (глобальное правило темы для a:hover — тот же #093159); сдвигается стрелка */
+.chz-link:hover::after { transform: translateX(3px); }
+.chz-link:focus-visible { outline: 2px solid var(--chz-s-brand); outline-offset: 2px; }
+
+/* ---------- 5. Карточки ---------- */
+/* Основа: .advantages_of_working_with_us_item (белая, рамка, скругление 12) */
+.chz-cards {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--chz-s-gap);
+  margin: var(--chz-s-block) 0 0; padding: 0; list-style: none;
+}
+.chz-cards--3 { grid-template-columns: repeat(3, 1fr); }
+.chz-card {
+  background: var(--chz-s-white); border: 1px solid var(--chz-s-border);
+  border-radius: var(--chz-s-radius); padding: var(--chz-s-pad);
+}
+.chz-card h3 { margin: 0 0 var(--chz-s-stack); }
+/* Иконка карточки — как .advantages_of_working_with_us_item_img темы: 40px, отступ 15px (≤960: 32px, 8px).
+   SVG 24×24 с цветом #265380 масштабируется по viewBox. */
+.chz-card__icon { display: block; width: 40px; height: 40px; margin-bottom: 15px; object-fit: contain; }
+@media (max-width: 960px) {
+  .chz-card__icon { width: 32px; height: 32px; margin-bottom: 8px; }
+}
+.chz-card p { font: var(--chz-s-text-m); color: var(--chz-s-text); margin: 0; }
+.chz-card p + p { margin-top: 10px; }
+@media (max-width: 960px) {
+  .chz-cards, .chz-cards--3 { grid-template-columns: 1fr; }
+}
+
+/* ---------- 6. Таблица ---------- */
+/* Основа: .services-table_wrap (белая, рамка #ccd4de, скругление 12, ячейки 24px, 16/1.8) */
+.chz-table { margin-top: var(--chz-s-block); background: var(--chz-s-white); border: 1px solid var(--chz-s-border); border-radius: var(--chz-s-radius); overflow: hidden; }
+.chz-table table { width: 100%; border-collapse: collapse; }
+.chz-table th,
+.chz-table td {
+  text-align: left; vertical-align: top; padding: var(--chz-s-pad);
+  font: 400 16px/1.8 var(--chz-s-font); color: var(--chz-s-text);
+  border-bottom: 1px solid var(--chz-s-border); word-break: normal; overflow-wrap: break-word; /* не anywhere: тот разрывает строку и на неразрывных пробелах типографа */
+}
+.chz-table thead th { background: var(--chz-s-surface); font-weight: 600; }
+.chz-table tbody td:first-child { font-weight: 500; }
+/* Первая колонка — как в .services-table_wrap темы (26%) */
+.chz-table th:first-child,
+.chz-table td:first-child { width: 26%; }
+.chz-table tbody tr:last-child td { border-bottom: none; }
+/* Ширины колонок задаются процентами при автоматической раскладке (не table-layout: fixed):
+   на широком экране колонки ровно по процентам, на узком колонка не становится уже своего самого
+   длинного неразрывного фрагмента (типограф: «После сканирования», «и до размещения»). */
+/* Колонки равной ширины (fill): 2 колонки — 50 / 50. Задание 2, «Что выполняет склад» */
+.chz-table--even th:first-child,
+.chz-table--even td:first-child,
+.chz-table--even th { width: 50%; }
+/* Последняя колонка 41 % (описательный текст), остальные — поровну (fill).
+   Задание 2, «Реестры кодов»: колонка «Содержание» */
+.chz-table--fill-last th:first-child,
+.chz-table--fill-last td:first-child,
+.chz-table--fill-last th { width: calc(59% / 3); }
+.chz-table--fill-last th:last-child { width: 41%; }
+.chz-table caption { caption-side: bottom; text-align: left; padding: 12px var(--chz-s-pad); font: var(--chz-s-caption); color: var(--chz-s-text-2); }
+@media (max-width: 960px) {
+  /* Как у темы на 900px: горизонтальная прокрутка внутри рамки */
+  .chz-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .chz-table table { min-width: 720px; }
+}
+@media (max-width: 640px) {
+  .chz-table th, .chz-table td { font-size: 14px; }
+}
+
+/* Таблица на тёмно-синей полосе — как отдельный блок таблицы на других страницах услуг.
+   Полоса — компонент темы .services-table (фон #093159, звезды, padding 64/40, .container по центру),
+   без H2. Ставится внутри section.chz-s между двумя .container, поэтому растягивается во всю ширину. */
+.chz-band { margin: var(--chz-s-subblock) 0; }
+.chz-band .chz-table { margin-top: 0; width: var(--chz-s-span-10); max-width: 100%; }
+/* Отступ от полосы задает сама полоса — у первого элемента следующего контейнера свой отступ убираем */
+.chz-s .chz-band + .container > :first-child,
+.chz-band + .container > :first-child { margin-top: 0; }
+
+/* ---------- 7. Плашка, примечание, CTA ---------- */
+/* Основа: .block_with_text_blue_background (фон #f2f7fc, скругление 12) */
+.chz-plate { margin-top: var(--chz-s-block); background: var(--chz-s-surface); border-radius: var(--chz-s-radius); padding: var(--chz-s-pad-plate); }
+.chz-plate > h3 { margin: 0 0 var(--chz-s-stack); }
+.chz-plate p { font: var(--chz-s-text-m); margin: 0; }
+.chz-plate p + p { margin-top: 10px; }
+
+.chz-note {
+  margin-top: var(--chz-s-pad); padding: var(--chz-s-stack) var(--chz-s-pad);
+  background: var(--chz-s-surface); border-radius: var(--chz-s-radius);
+}
+.chz-s .chz-note p,
+.chz-note p { font: var(--chz-s-caption); color: var(--chz-s-text-2); margin: 0; }
+.chz-note strong { color: var(--chz-s-text); font-weight: 600; }
+
+.chz-cta {
+  margin-top: var(--chz-s-block); display: flex; align-items: center; justify-content: space-between; gap: var(--chz-s-gap);
+  background: var(--chz-s-surface); border-radius: var(--chz-s-radius); padding: var(--chz-s-pad-plate);
+}
+.chz-cta__text { max-width: 720px; }
+.chz-cta__text h3,
+.chz-cta__text h2 { margin: 0 0 var(--chz-s-stack); }
+.chz-cta__text p { font: var(--chz-s-text-m); margin: 0; }
+.chz-cta .chz-actions { margin-top: 0; flex: 0 0 auto; flex-direction: column; align-items: flex-start; }
+@media (max-width: 960px) {
+  .chz-cta { flex-direction: column; align-items: flex-start; }
+  /* Горизонтальный CTA в столбик: заголовок и текст по центру (задание 2, «Стоимость обработки») */
+  .chz-cta:not(.chz-cta--stack) .chz-cta__text { text-align: center; align-self: stretch; max-width: none; }
+  .chz-cta .chz-actions { width: 100%; }
+  .chz-cta .btn { width: 100%; max-width: 100%; }
+}
+
+/* Card-helper — сноска-примечание (определение термина и т.п.). Макет: Figma UI-System, node 2888:26.
+   Отличается от плашек темы: свой фон --chz-s-bg-info и акцентная линия слева.
+   Работает и внутри секций темы (без обертки .chz-s): все стили заданы явно. */
+.chz-card-helper {
+  display: flex; flex-direction: column; gap: 4px;
+  margin-top: var(--chz-s-block); padding: 8px 24px;
+  background: var(--chz-s-bg-info);
+  border-left: 4px solid var(--chz-s-border-accent);
+  border-radius: 0 var(--chz-s-radius) var(--chz-s-radius) 0;
+}
+.chz-card-helper p { margin: 0; }
+.chz-card-helper__text { font: var(--chz-s-lead); color: var(--chz-s-text); }   /* 18 / 1.7 / 500 */
+.chz-card-helper__text b { font-weight: 600; }
+.chz-card-helper__note { font: 500 16px/1.8 var(--chz-s-font); color: var(--chz-s-text-2); }
+@media (max-width: 640px) {
+  .chz-card-helper { padding: 8px 16px; }
+  .chz-card-helper__note { font-size: 14px; }
+}
+
+/* Ряд из двух равных колонок с промежутком как у карточек (25 / 16px), колонки совпадают с карточками.
+   Задание 1: слева CTA-карточка, справа изображение (.chz-split--media). */
+.chz-split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--chz-s-gap); align-items: start;
+  margin-top: var(--chz-s-subblock);
+}
+.chz-split .chz-cta,
+.chz-split .chz-figure { margin-top: 0; }
+/* Изображение растягивается по высоте соседней карточки */
+.chz-split--media { align-items: stretch; }
+/* Высоту ряда задает карточка: изображение заполняет колонку абсолютно и не растягивает ряд своими пропорциями */
+.chz-split__media { position: relative; overflow: hidden; border-radius: var(--chz-s-radius); }
+/* .chz-split в селекторе — сильнее общего .chz-figure img { height:auto } ниже по файлу */
+.chz-split .chz-split__media img,
+.chz-split .chz-split__media > .chz-figure__ph { position: absolute; inset: 0; width: 100%; height: 100%; }
+.chz-split .chz-split__media img { object-fit: cover; }
+.chz-split__media > .chz-figure__ph { aspect-ratio: auto; }
+@media (max-width: 960px) {
+  .chz-split { grid-template-columns: 1fr; }
+  .chz-split__media { aspect-ratio: 16 / 9; }
+}
+
+/* Вариант «текст + фото»: фото держит пропорцию 4:3 (стандарт фото проекта), текст по верху */
+.chz-split--text { align-items: start; }
+/* Внутри колонки ряда текст уже ограничен колонкой — ширину 8 колонок (от контейнера) не применяем */
+.chz-split .chz-text,
+.chz-split .chz-note { max-width: none; }
+.chz-split--text .chz-split__media { aspect-ratio: 4 / 3; }
+/* Выравнивание колонок по центру по вертикали (фото напротив блока текста/шагов) */
+.chz-split--center { align-items: center; }
+/* Ряд «шаги + фото» внутри подблока: отступ от текста как до сетки (50 / 32) */
+.chz-split--steps { margin-top: var(--chz-s-block); }
+/* ≤960 (в столбик): шаги → фото = тот же отступ, что текст → шаги (32) */
+@media (max-width: 960px) { .chz-split--steps { row-gap: var(--chz-s-block); } }
+.chz-split .number_block_items.chz-steps { margin-top: 0; max-width: none; }
+/* Ряд или CTA первым в контейнере (H2 внутри) — отступ дает секция */
+.chz-s .container > .chz-split:first-child,
+.chz-s .container > .chz-cta:first-child { margin-top: 0; }
+/* Card-helper внутри колонки ряда: без ограничения 8 колонок, ближе к тексту */
+.chz-split .chz-card-helper { max-width: none; margin-top: var(--chz-s-pad); }
+/* Колонка «заголовок → текст → схема → сноска» (задание 2, «Агрегация кодов»):
+   шаг между элементами = отступ H2 → текст (35 / 32) */
+.chz-split .chz-text + .chz-chain,
+.chz-split .chz-chain + .chz-card-helper { margin-top: var(--chz-s-h2-mb); }
+
+/* FAQ внутри нашей секции — тоже подблок (у темы .faq_items { margin-top:50px }) */
+.chz-s .faq_items { margin-top: var(--chz-s-subblock); }
+
+/* Сразу после H2 отступ задает сам заголовок (35 / 32): у ряда и CTA свой отступ убираем,
+   FAQ — как у темы (H2 → вопросы 50 / 32) */
+.chz-s h2 + .chz-split,
+.chz-s h2 + .chz-cta { margin-top: 0; }
+.chz-s h2 + .faq_items { margin-top: var(--chz-s-block); }
+/* ≤640: H2 → вопросы FAQ тоже 24 (отступ дает сам H2) */
+@media (max-width: 640px) { .chz-s h2 + .faq_items { margin-top: 0; } }
+
+/* Ссылка «подробнее» в конце подблока: <p class="chz-more"><a class="chz-link">…</a></p> */
+.chz-s p.chz-more { margin: var(--chz-s-pad) 0 0; }
+
+/* Плейсхолдер вместо фото первого экрана — в пропорции фото темы (485×364 ≈ 4:3) */
+.first_screen_image > .chz-figure__ph { aspect-ratio: 4 / 3; height: 100%; }
+/* Фото первого экрана на наших страницах: рамка 4:3, как у фото темы; любое фото обрезается по ней.
+   ≤960 высоту 258px задает тема. */
+.chz-s .first_screen_image { aspect-ratio: 4 / 3; }
+.chz-s .first_screen_image picture,
+.chz-s .first_screen_image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* ≤960 тема раскладывает первый экран по order: список → фото (order:4) → кнопка (.btn, order:5).
+   Группе из двух кнопок даем тот же порядок, что одиночной кнопке темы */
+@media (max-width: 960px) {
+  .chz-s .first_screen .chz-actions { order: 5; margin-top: 0; }
+}
+/* Заголовок подблока в .chz-text (например, «Обмен электронными документами») */
+.chz-text > h3 + p { margin-top: var(--chz-s-stack); }
+
+/* CTA вертикально: заголовок → текст → ссылка → кнопка */
+.chz-cta--stack { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: var(--chz-s-stack); } /* текст → ссылка: 16 */
+.chz-cta--stack .chz-actions { align-items: flex-start; gap: 40px; }                                                   /* ссылка → кнопка: 40 */
+
+/* ---------- 8. Схема-цепочка ---------- */
+/* Новый компонент на токенах: «Код товарной единицы → код короба → код паллеты» */
+.chz-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: var(--chz-s-pad) 0 0; padding: 0; list-style: none; }
+.chz-chain li {
+  display: flex; align-items: center; gap: 12px;
+  font: 600 16px/1.5 var(--chz-s-font); color: var(--chz-s-text);
+}
+.chz-chain__step { padding: 12px 16px; background: var(--chz-s-white); border: 1px solid var(--chz-s-border); border-radius: var(--chz-s-radius-btn); }
+.chz-chain li + li::before { content: "→"; color: var(--chz-s-marker); font-weight: 700; }
+@media (max-width: 640px) {
+  .chz-chain { flex-direction: column; align-items: stretch; gap: 8px; }
+  .chz-chain li { flex-direction: column; align-items: stretch; gap: 8px; }
+  .chz-chain li + li::before { content: "↓"; text-align: center; }
+  .chz-chain li { font-size: 14px; }
+}
+
+/* ---------- 9. Этапы ---------- */
+/* Компонент темы .number_block без изменений. В разметке темы текст шага — <p class="number_block_item_text">,
+   поэтому глобальное p (18px) перебивает 16px; приводим к стилю текста компонентов. Шаги ТЗ без заголовка. */
+.chz-s .number_block_item_text { font: var(--chz-s-text-m); color: var(--chz-s-text); }
+
+/* Вертикальный список этапов (много шагов): номер в кружке темы, текст справа по центру (16),
+   шаги друг под другом через 16, ширина — 8 колонок. На всех ширинах одинаково.
+   <div class="number_block_items chz-steps"> */
+.number_block_items.chz-steps { display: flex; flex-direction: column; gap: 16px; max-width: var(--chz-s-measure); }
+.number_block_items.chz-steps .number_block_item {
+  display: grid; grid-template-columns: 40px 1fr; column-gap: 16px; row-gap: 0; align-items: center;
+}
+.number_block_items.chz-steps .number_block_item::before,
+.number_block_items.chz-steps .number_block_item::after { display: none; }
+.number_block_items.chz-steps .number_block_item_number {
+  grid-row: auto; align-self: center; font-size: 16px; font-weight: 600; line-height: 1; color: var(--chz-s-text);
+}
+.number_block_items.chz-steps .number_block_item_text { grid-column: 2; margin-top: 0; }
+
+/* Этапы в две колонки (сверху вниз: 1–4 | 5–8), промежуток как у карточек; ≤960 — одна колонка */
+.number_block_items.chz-steps.chz-steps--cols { display: block; columns: 2; column-gap: var(--chz-s-gap); }
+.chz-steps--cols .number_block_item { break-inside: avoid; }
+.chz-steps--cols .number_block_item + .number_block_item { margin-top: 16px; }
+/* Этапы на голубой плашке — как CTA «Стоимость обработки»: фон, отступы 40 / 24, скругление 12, во всю ширину */
+.number_block_items.chz-steps.chz-steps--plate {
+  max-width: none; padding: var(--chz-s-pad-plate);
+  background: var(--chz-s-surface); border-radius: var(--chz-s-radius);
+}
+@media (max-width: 960px) {
+  .number_block_items.chz-steps.chz-steps--cols { columns: 1; }
+}
+
+/* Список-«плитки»: каждый пункт в контейнере как шаг схемы .chz-chain__step (только контейнер: белый фон,
+   рамка, скругление 8, отступы 12/16). Текст и маркер — как у списка (.chz-list / .chz-list--check).
+   2 колонки во всю ширину (fill), строки через 16, колонки через 25. ≤960 — одна колонка.
+   Задание 2, «Что требуется для запуска»: chz-list chz-list--check chz-list--boxes */
+.chz-list--boxes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--chz-s-stack) var(--chz-s-gap); }
+.chz-list--boxes li {
+  margin: 0; padding: 12px 16px;
+  background: var(--chz-s-white); border: 1px solid var(--chz-s-border); border-radius: var(--chz-s-radius-btn);
+}
+.chz-list--boxes li + li { margin-top: 0; }
+/* Маркер внутри контейнера: сдвигаем на отступ контейнера, текст — на отступ + место маркера */
+.chz-list--boxes.chz-list--check li { padding-left: calc(16px + 24px); }
+.chz-list--boxes.chz-list--check li::before { left: 16px; top: calc(12px + .45em); }
+.chz-list--boxes:not(.chz-list--check) li { padding-left: calc(16px + 15px); }
+.chz-list--boxes:not(.chz-list--check) li::before { left: 16px; top: calc(12px + .55em); }
+@media (max-width: 960px) { .chz-list--boxes { grid-template-columns: 1fr; } }
+
+/* Список в две колонки (сверху вниз), промежуток как у карточек; ≤960 — одна колонка */
+.chz-list--cols { columns: 2; column-gap: var(--chz-s-gap); }
+.chz-list--cols li { break-inside: avoid; }
+@media (max-width: 960px) { .chz-list--cols { columns: 1; } }
+
+/* ---------- 10. Медиа ---------- */
+.chz-figure { margin: var(--chz-s-block) 0 0; }
+.chz-figure img { display: block; width: 100%; height: auto; border-radius: var(--chz-s-radius); }
+.chz-figure figcaption { margin-top: 8px; font: var(--chz-s-caption); color: var(--chz-s-text-2); }
+/* Плейсхолдер для фото, которых пока нет: показывает место, размер и alt */
+.chz-figure__ph {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  aspect-ratio: 16 / 9; padding: var(--chz-s-pad);
+  background: var(--chz-s-surface); border: 1px dashed var(--chz-s-border); border-radius: var(--chz-s-radius);
+  font: var(--chz-s-caption); color: var(--chz-s-text-2);
+}
+.chz-media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--chz-s-gap); margin-top: var(--chz-s-block); }
+.chz-media-grid .chz-figure { margin: 0; }
+@media (max-width: 960px) { .chz-media-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .chz-media-grid { grid-template-columns: 1fr; } }
+
+/* ---------- 11. Доступность ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .chz-link::after { transition: none; }
+}

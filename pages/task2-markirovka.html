@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO (ТЗ, задание 2). На сайте задаются через Yoast: фокусная фраза «маркировка «Честный ЗНАК» на складе», ярлык markirovka-chestnyj-znak ===== -->
+  <title>Маркировка «Честный ЗНАК» на складе в Москве — учет и проверка кодов</title>
+  <meta name="description" content="Сканируем Data Matrix при приемке и отгрузке, сопоставляем код с артикулом, фиксируем каждую единицу в WMS и передаем поклажедателю реестры XLSX/XML.">
+  <link rel="canonical" href="https://kosmoslogistic.com/services/markirovka-chestnyj-znak/">
+  <meta property="og:title" content="Маркировка «Честный ЗНАК» на складе в Москве — учет и проверка кодов">
+  <meta property="og:description" content="Сканируем Data Matrix при приемке и отгрузке, сопоставляем код с артикулом, фиксируем каждую единицу в WMS и передаем поклажедателю реестры XLSX/XML.">
+  <meta property="og:url" content="https://kosmoslogistic.com/services/markirovka-chestnyj-znak/">
+  <meta property="og:type" content="website">
+  <!-- og:image — абсолютный URL реального изображения ≥ 1200 px (фото первого экрана), подставить после загрузки -->
+  <meta property="og:image" content="{{ogImageUrl}}">
+
+  <!-- JSON-LD из ТЗ: WebPage, Service, BreadcrumbList. Organization и WebSite — глобальные на сайте. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/#webpage",
+        "url": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/",
+        "name": "Маркировка «Честный ЗНАК» на складе",
+        "description": "Сканирование Data Matrix при приемке и отгрузке, учет кодов в WMS и передача реестров XLSX/XML.",
+        "inLanguage": "ru-RU",
+        "isPartOf": {"@id": "https://kosmoslogistic.com/#website"},
+        "mainEntity": {"@id": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/#service"},
+        "breadcrumb": {"@id": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/#breadcrumb"}
+      },
+      {
+        "@type": "Service",
+        "@id": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/#service",
+        "name": "Маркировка «Честный ЗНАК» на складе",
+        "serviceType": "Складской учет и контроль кодов маркировки Data Matrix",
+        "description": "Поштучное сканирование кодов при приемке и отгрузке, сопоставление с артикулом, фиксация в WMS, агрегация по согласованию и передача реестров XLSX/XML.",
+        "url": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/",
+        "provider": {"@id": "https://kosmoslogistic.com/#organization"},
+        "areaServed": [
+          {"@type": "City", "name": "Москва"},
+          {"@type": "AdministrativeArea", "name": "Московская область"}
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Операции с кодами маркировки",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Контроль кодов при приемке"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Контроль кодов при отгрузке"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Формирование реестров XLSX/XML"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Агрегация кодов маркировки"}}
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/#breadcrumb",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://kosmoslogistic.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Услуги", "item": "https://kosmoslogistic.com/services/"},
+          {"@type": "ListItem", "position": 3, "name": "Другие услуги", "item": "https://kosmoslogistic.com/services/drugie-uslugi/"},
+          {"@type": "ListItem", "position": 4, "name": "Маркировка «Честный ЗНАК»", "item": "https://kosmoslogistic.com/services/markirovka-chestnyj-znak/"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- FAQPage — собирается из видимого FAQ: execution/faq_jsonld.py (не править вручную) -->
+  <!-- FAQPAGE:BEGIN -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что входит в услугу маркировки «Честный ЗНАК» на складе?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "«Космос-Логистик» сканирует Data Matrix при приемке и отгрузке, сопоставляет коды с артикулами, фиксирует результаты в WMS и формирует реестры XLSX или XML. Агрегация и обмен электронными документами выполняются по согласованию"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сканируется ли каждая единица товара?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Код каждой маркированной единицы считывается терминалом сбора данных и фиксируется в WMS"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно заказать контроль только при приемке?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. После приемки и сканирования партии поклажедатель получает входной реестр кодов в формате XLSX или XML"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно заказать контроль только перед отгрузкой?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. После комплектации заказ переводится в операцию «Упаковка», где коды всех товарных единиц сканируются и привязываются к заказу"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно заказать контроль на входе и на выходе?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. При сквозном контроле коды сканируются при приемке и повторно перед отгрузкой сформированного заказа"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой результат передается после приемки?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поклажедателю передается реестр кодов, фактически отсканированных при приемке партии"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой результат передается после формирования заказа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поклажедателю передается отдельный реестр кодов маркировки товарных единиц, вошедших в конкретный заказ"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "В каких форматах передаются реестры?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Реестры предоставляются в формате XLSX или в машиночитаемом формате XML"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что проверяет WMS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WMS сопоставляет код с артикулом, фиксирует его принадлежность к поставке и заказу, выявляет повторное появление кода в учетном контуре и сохраняет историю складских операций"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно учитывать партию и срок годности?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Партия и срок годности учитываются при наличии необходимых данных и настроенного задания"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Проверяется ли государственный статус кода в ГИС МТ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Онлайн-проверка государственного статуса кода не входит в стандартную складскую услугу"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Передает ли склад данные напрямую в ГИС МТ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "В стандартной схеме склад передает поклажедателю реестры XLSX или XML. Передача электронных документов через ЭДО и в ГИС МТ выполняется только по отдельному соглашению и при наличии необходимых полномочий"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем XML-реестр отличается от документа ЭДО?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "XML-реестр содержит результаты складского сканирования. Электронный документ ЭДО формируется в установленном формате, подписывается уполномоченными сторонами и передается через оператора электронного документооборота"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что происходит с нечитаемым кодом?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Товар помещается в карантинную зону до получения задания поклажедателя"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что происходит при обнаружении дубля?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Дальнейшая складская обработка единицы блокируется. Товар помещается в карантин, а информация о проблеме передается поклажедателю"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что происходит при несоответствии кода артикулу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Товар отделяется от доступного остатка и помещается в карантин. Дальнейшие действия выполняются по заданию поклажедателя"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как обрабатывается товар без этикетки?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Отсутствие этикетки фиксируется при приемке. Товар помещается в карантин до передачи поклажедателем корректной этикетки или другого задания"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как обрабатываются возвраты?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Возвращенная единица сканируется, осматривается и помещается в карантин. Поклажедатель определяет дальнейший сценарий обработки"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Выполняется ли агрегация кодов?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. По согласованному регламенту коды товарных единиц связываются с кодами коробов и паллет"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно передать данные в учетную систему поклажедателя?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Базовые форматы передачи — XLSX и XML. Дополнительная интеграция согласовывается отдельно"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Кто определяет дальнейшие действия с проблемным товаром?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Решение принимает поклажедатель. Склад выполняет полученное задание и фиксирует результат операции в WMS"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "От чего зависит стоимость?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость зависит от количества единиц и артикулов, контрольных точек, состояния маркировки, необходимости распаковки, переупаковки, агрегации и выбранного формата обмена"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQPAGE:END -->
+
+  <!-- CSS темы (на сайте подключен на страницах услуг) -->
+  <link rel="stylesheet" href="../vendor/single_services.css">
+  <!-- Подключить ПОСЛЕ single_services.css -->
+  <link rel="stylesheet" href="../css/chz-services.css">
+  <style>
+    /* ===== Только предпросмотр (pv-), на сайт не переносится ===== */
+    body { padding-top: 0; }
+    .pv-legend { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 12px 24px;
+      background: #fff; border-bottom: 1px solid #ccd4de; font: 400 13px/1.5 "Manrope", sans-serif; color: #242a33; }
+    .pv-legend b { font-weight: 700; margin-right: auto; }
+    mark.pv-prop { background: #fff; color: inherit; outline: 2px dashed #c42624; outline-offset: 1px; }
+    .pv-sample { display: inline-block; padding: 0 4px; }
+    .pv-theme-block { max-width: 1300px; margin: 125px auto; padding: 48px 24px; border: 2px dashed #ccd4de; border-radius: 12px;
+      font: 600 14px/1.6 "Manrope", sans-serif; color: #545b66; text-align: center; }
+    @media (max-width: 640px) { .pv-legend { padding: 12px 16px; } .pv-theme-block { margin: 50px 16px; } }
+  </style>
+</head>
+<body>
+
+<div class="pv-legend">
+  <b>Задание 2 · посадочная · предпросмотр</b>
+</div>
+
+<main>
+<!-- ======================== CHZ:BEGIN task2-page ========================
+     Задание 2. Новая страница /services/markirovka-chestnyj-znak/ — всё содержимое <main> до CHZ:END.
+     Стили: single_services.css + design/css/chz-services.css. Шапку, подвал, форму выводит тема.
+     ======================================================================== -->
+
+<!-- 0. Хлебные крошки (как BreadcrumbList ТЗ) -->
+<section class="breadcrumbs">
+  <div class="container">
+    <ul class="breadcrumbs_list">
+      <li class="breadcrumbs_item"><a href="https://kosmoslogistic.com/"><span class="breadcrumbs_home_label"><span class="visually-hidden">Главная</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16.666 15.8337V8.33366C16.666 8.06977 16.6068 7.81977 16.4885 7.58366C16.3702 7.34755 16.2071 7.1531 15.9993 7.00033L10.9993 3.25033C10.7077 3.0281 10.3743 2.91699 9.99935 2.91699C9.62435 2.91699 9.29102 3.0281 8.99935 3.25033L3.99935 7.00033C3.79102 7.1531 3.62768 7.34755 3.50935 7.58366C3.39102 7.81977 3.33213 8.06977 3.33268 8.33366V15.8337C3.33268 16.292 3.49602 16.6845 3.82268 17.0112C4.14935 17.3378 4.54157 17.5009 4.99935 17.5003H7.49935C7.73546 17.5003 7.93324 17.4203 8.09268 17.2603C8.25213 17.1003 8.33213 16.9025 8.33268 16.667V12.5003C8.33268 12.2642 8.41268 12.0664 8.57268 11.907C8.73268 11.7475 8.93046 11.6675 9.16602 11.667H10.8327C11.0688 11.667 11.2666 11.747 11.426 11.907C11.5855 12.067 11.6655 12.2648 11.666 12.5003V16.667C11.666 16.9031 11.746 17.1012 11.906 17.2612C12.066 17.4212 12.2638 17.5009 12.4993 17.5003H14.9993C15.4577 17.5003 15.8499 17.3373 16.176 17.0112C16.5021 16.685 16.6655 16.2925 16.666 15.8337Z" fill="#767676"/></svg></span></a></li>
+      <li class="breadcrumbs_item"><a href="https://kosmoslogistic.com/services/"><span>Услуги</span></a></li>
+      <li class="breadcrumbs_item"><a href="https://kosmoslogistic.com/services/drugie-uslugi/"><span>Другие услуги</span></a></li>
+      <li class="breadcrumbs_item"><span>Маркировка «Честный ЗНАК»</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 1. Первый экран -->
+<section class="service_section chz-s">
+  <div class="first_screen">
+    <div class="container">
+      <div class="first_screen_content">
+        <h1 class="first_screen_title">Маркировка «Честный ЗНАК» на складе</h1>
+        <p class="first_screen_subtitle">Сканируем Data Matrix каждой товарной единицы при приемке и отгрузке, сопоставляем код с артикулом, фиксируем результат в WMS и формируем реестры в формате XLSX или XML</p>
+        <ul class="first_screen_items">
+          <li class="first_screen_item"><p>Контроль на входе, на выходе или на обоих этапах</p></li>
+          <li class="first_screen_item"><p>Поштучный учет кодов в WMS</p></li>
+          <li class="first_screen_item"><p>Реестр по каждой приемке и каждому сформированному заказу</p></li>
+          <li class="first_screen_item"><p>Карантинная зона для товара с отсутствующей этикеткой, дублем или несоответствием</p></li>
+        </ul>
+        <!-- Кнопки открывают существующую форму сайта #callback-popup -->
+        <div class="chz-actions">
+          <a class="btn" href="#callback-popup" data-fancybox data-event="chestny_znak_calculation_click">Рассчитать обработку партии</a>
+          <a class="btn btn_grey" href="#callback-popup" data-fancybox data-event="chestny_znak_edo_click">Обсудить обмен данными</a>
+        </div>
+      </div>
+      <div class="first_screen_image">
+        <!-- МЕДИА № 1 (alt — ТЗ, раздел «Медиафайлы»). Файлы: chz/photos/chz-scan-1280.webp + .jpg — загрузить в медиатеку, заменить пути.
+             Первый экран — loading="eager" (видно сразу при загрузке) -->
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-scan-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-scan-1280.jpg" alt="Сканирование кода Data Matrix терминалом сбора данных при приемке товара на складе «Космос-Логистик»." width="1280" height="960" loading="eager" decoding="async">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Что выполняет склад: текст → определение (card-helper) → таблица на синей полосе -->
+<section class="service_section chz-s">
+  <div class="container">
+    <h2>Что выполняет склад</h2>
+    <div class="chz-text">
+      <p>«Космос-Логистик» выполняет поэкземплярное сканирование кодов Data Matrix терминалами сбора данных. <!-- Общие требования п. 7: обязательная формулировка (в текстах задания 2 отсутствовала), согласована 2026-10-19 -->Сканирование терминалом сбора данных сокращает ручной ввод и снижает риск ошибок при приемке, комплектации и отгрузке. Каждый отсканированный код фиксируется в WMS и связывается с артикулом, поставкой и поклажедателем. По заданию поклажедателя контроль выполняется при приемке, перед отгрузкой или на обоих этапах</p>
+      <!-- Перелинковка ТЗ -->
+      <p class="chz-more"><a class="chz-link" href="task1-upakovka.html">Упаковка и нанесение этикеток</a></p>
+    </div>
+    <!-- Определение поклажедателя — у первого употребления (общие требования п. 2); абзац-определение из ТЗ перенесен сюда -->
+    <div class="chz-card-helper">
+      <p class="chz-card-helper__text"><b>Поклажедатель</b> — организация, индивидуальный предприниматель или физическое лицо, передающие товар на склад для хранения и складской обработки</p>
+      <p class="chz-card-helper__note">Термин «поклажедатель» используется для стороны, передающей вещь хранителю по договору хранения</p>
+    </div>
+  </div>
+
+  <div class="services-table chz-band">
+    <div class="container">
+      <div class="chz-table chz-table--even">
+        <table>
+          <thead><tr><th scope="col">Операция</th><th scope="col">Условия выполнения</th></tr></thead>
+          <tbody>
+            <tr><td>Поштучное сканирование Data Matrix</td><td>Стандартная операция</td></tr>
+            <tr><td>Контроль кодов при приемке</td><td>Стандартная операция</td></tr>
+            <tr><td>Контроль кодов перед отгрузкой</td><td>Стандартная операция</td></tr>
+            <tr><td>Сопоставление кода с артикулом</td><td>Стандартная операция</td></tr>
+            <tr><td>Учет партии и срока годности</td><td>При наличии данных и настроенного задания</td></tr>
+            <tr><td>Входной реестр XLSX или XML</td><td>Стандартная операция</td></tr>
+            <tr><td>Реестр кодов по заказу XLSX или XML</td><td>Стандартная операция</td></tr>
+            <tr><td>Агрегация «единица — короб — паллета»</td><td>По согласованному регламенту</td></tr>
+            <!-- ТЗ, общие требования п. 10: подставить точное коммерческое название сервиса «Контур» -->
+            <tr><td>Обмен документами через оператора ЭДО «Контур»</td><td>По отдельному соглашению</td></tr>
+            <tr><td>Передача электронных документов в ГИС МТ</td><td>По отдельной согласованной схеме и при наличии необходимых полномочий</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 3. Контроль кодов при приемке: текст → этапы (8) -->
+<section class="service_section chz-s">
+  <div class="number_block block_with_numbers">
+    <div class="container">
+      <h2>Контроль кодов при приемке</h2>
+      <div class="chz-text">
+        <p>После разгрузки партия принимается по артикулам. Сотрудник склада сканирует терминалом сбора данных код Data Matrix каждой товарной единицы. WMS фиксирует код и связывает его с артикулом, поставкой и поклажедателем</p>
+        <p>При наличии необходимых данных и настроенного задания дополнительно учитываются партия и срок годности. После завершения сканирования и до размещения товара система формирует реестр фактически принятых кодов</p>
+      </div>
+      <div class="number_block_items chz-steps chz-steps--cols chz-steps--plate">
+        <div class="number_block_item"><p class="number_block_item_number">1</p><p class="number_block_item_text">Получить задание и ожидаемый состав поставки</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">2</p><p class="number_block_item_text">Разгрузить товар и выполнить приемку по артикулам</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">3</p><p class="number_block_item_text">Просканировать Data Matrix каждой единицы терминалом сбора данных</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">4</p><p class="number_block_item_text">Сопоставить код с артикулом в WMS</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">5</p><p class="number_block_item_text">Поместить проблемные единицы в карантинную зону</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">6</p><p class="number_block_item_text">Сформировать входной реестр XLSX или XML</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">7</p><p class="number_block_item_text">Передать реестр поклажедателю</p></div>
+        <div class="number_block_item"><p class="number_block_item_number">8</p><p class="number_block_item_text">Разместить принятый товар на хранение</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Контроль при комплектации и отгрузке: текст → ряд «этапы (9) | фото» по центру -->
+<section class="service_section chz-s">
+  <div class="number_block block_with_numbers">
+    <div class="container">
+      <h2>Контроль при комплектации и отгрузке</h2>
+      <div class="chz-text">
+        <p>Заказ комплектуется по артикулам на основании заявки поклажедателя. После завершения комплектации груз переводится в WMS в операцию «Упаковка»</p>
+        <p>В операции «Упаковка» выполняются дополнительная упаковка и обязательное сканирование Data Matrix всех товарных единиц, вошедших в заказ. Коды привязываются к номеру заказа. После завершения операции формируется отдельный реестр кодов конкретной отгрузки</p>
+        <!-- Перелинковка ТЗ -->
+        <p class="chz-more"><a class="chz-link" href="https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/">Как учитываются коды при приемке и отгрузке</a></p>
+      </div>
+      <div class="chz-split chz-split--text chz-split--media chz-split--center chz-split--steps">
+        <div class="number_block_items chz-steps">
+          <div class="number_block_item"><p class="number_block_item_number">1</p><p class="number_block_item_text">Получить заявку поклажедателя</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">2</p><p class="number_block_item_text">Отобрать товар по артикулам</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">3</p><p class="number_block_item_text">Передать собранный заказ в операцию «Упаковка»</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">4</p><p class="number_block_item_text">Выполнить дополнительную упаковку</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">5</p><p class="number_block_item_text">Просканировать Data Matrix каждой единицы</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">6</p><p class="number_block_item_text">Привязать коды к номеру заказа</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">7</p><p class="number_block_item_text">Сформировать выходной реестр XLSX или XML</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">8</p><p class="number_block_item_text">Передать реестр поклажедателю</p></div>
+          <div class="number_block_item"><p class="number_block_item_number">9</p><p class="number_block_item_text">Передать заказ к отгрузке</p></div>
+      </div>
+        <figure class="chz-figure chz-split__media">
+          <!-- МЕДИА № 2: chz-scan-packaging-1280.webp + .jpg (1280×960, 4:3), alt — ТЗ. На сайте заменить пути на фактические из медиатеки -->
+          <picture>
+            <source srcset="../wp-content/uploads/chz/photos/chz-scan-packaging-1280.webp" type="image/webp">
+            <img src="../wp-content/uploads/chz/photos/chz-scan-packaging-1280.jpg" alt="Сканирование кода «Честный ЗНАК» при упаковке заказа на складе «Космос-Логистик»." width="1280" height="960" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Что проверяет WMS: текст + список → примечание → ссылка -->
+<section class="service_section chz-s">
+  <div class="container">
+    <h2>Что проверяет WMS</h2>
+    <div class="chz-text">
+      <p>При сканировании WMS выполняет складскую проверку кода маркировки и фиксирует результат операции</p>
+      <ul class="chz-list">
+        <li>Считывание Data Matrix терминалом сбора данных</li>
+        <li>Сопоставление кода с артикулом товара</li>
+        <li>Выявление повторного появления кода в учетном контуре склада</li>
+        <li>Привязка кода к поставке</li>
+        <li>Привязка кода к поклажедателю</li>
+        <li>Привязка кода к сформированному заказу</li>
+        <li>Учет партии и срока годности при наличии необходимых данных и настроенного задания</li>
+        <li>Сохранение истории складских операций с кодом</li>
+      </ul>
+    </div>
+    <div class="chz-card-helper"><p class="chz-card-helper__text">Стандартная складская проверка не включает онлайн-запрос государственного статуса кода в ГИС МТ</p></div>
+    <!-- Перелинковка ТЗ -->
+    <p class="chz-more"><a class="chz-link" href="https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/">Что входит в валидацию кодов маркировки</a></p>
+  </div>
+</section>
+
+<!-- 6. Реестры кодов: текст → таблица → медиа (3) -->
+<section class="service_section chz-s">
+  <div class="container">
+    <h2>Реестры кодов</h2>
+    <div class="chz-text">
+      <p>«Космос-Логистик» формирует отдельные реестры по операциям приемки и отгрузки. Реестр содержит данные о кодах, фактически отсканированных сотрудниками склада терминалами сбора данных</p>
+    </div>
+    <div class="chz-table chz-table--fill-last">
+      <table>
+        <thead><tr><th scope="col">Реестр</th><th scope="col">Момент формирования</th><th scope="col">Формат</th><th scope="col">Содержание</th></tr></thead>
+        <tbody>
+          <tr><td>Входной реестр</td><td>После сканирования партии и до размещения</td><td>XLSX или XML</td><td>Поставка, артикул, код маркировки, результат обработки; партия и срок годности при настроенном учете</td></tr>
+          <tr><td>Реестр заказа</td><td>После упаковки и до отгрузки</td><td>XLSX или XML</td><td>Номер заказа, артикул, код каждой отгружаемой единицы</td></tr>
+          <tr><td>Реестр агрегации</td><td>После формирования короба или паллеты</td><td>Согласованный формат</td><td>Код упаковки и связанные с ним коды вложенных единиц</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chz-media-grid">
+      <figure class="chz-figure">
+        <!-- МЕДИА № 3: chz-wms-1280.webp + .jpg (1280×960, 4:3), alt — ТЗ. На сайте заменить пути на фактические из медиатеки -->
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-wms-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-wms-1280.jpg" alt="Реестр кодов маркировки в WMS после приемки партии товара." width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="chz-figure">
+        <!-- МЕДИА № 4: chz-xlsx-1280.webp + .jpg (1280×960, 4:3), alt — предложение. На сайте заменить пути на фактические из медиатеки -->
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-xlsx-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-xlsx-1280.jpg" alt="Обезличенный пример входного реестра кодов маркировки в формате XLSX" width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="chz-figure">
+        <!-- МЕДИА № 5: chz-xml-1280.webp + .jpg (1280×960, 4:3), alt — предложение. На сайте заменить пути на фактические из медиатеки -->
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-xml-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-xml-1280.jpg" alt="Обезличенный пример реестра кодов маркировки в формате XML" width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Обмен электронными документами -->
+<section class="service_section chz-s">
+  <div class="container">
+    <h2>Обмен электронными документами</h2>
+    <div class="chz-text">
+      <!-- ТЗ, общие требования п. 10: подставить точное коммерческое название сервиса «Контур» -->
+      <p>В стандартной схеме реестры XLSX или XML передаются поклажедателю. По дополнительному соглашению возможен обмен электронными документами через оператора ЭДО «Контур»</p>
+      <p>До начала обмена согласовываются виды документов, формат данных, полномочия сторон, порядок подписания, используемая электронная подпись, сроки передачи и порядок обработки отклонений</p>
+      <p>Передача электронных документов в ГИС МТ выполняется только в рамках отдельно согласованной схемы и при наличии необходимых полномочий</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Агрегация кодов: текст + схема + примечание | фото -->
+<section class="service_section chz-s">
+  <div class="container">
+    <div class="chz-split chz-split--text chz-split--media chz-split--center">
+      <div>
+        <h2>Агрегация кодов</h2>
+        <div class="chz-text">
+          <p>По согласованному регламенту «Космос-Логистик» выполняет агрегацию на уровнях товарной единицы, короба и паллеты. WMS сохраняет связь между кодами вложенных единиц и кодом групповой или транспортной упаковки</p>
+        </div>
+        <ul class="chz-chain">
+          <li><span class="chz-chain__step">Код товарной единицы</span></li>
+          <li><span class="chz-chain__step">Код короба</span></li>
+          <li><span class="chz-chain__step">Код паллеты</span></li>
+        </ul>
+        <div class="chz-card-helper"><p class="chz-card-helper__text">Требования к идентификаторам коробов и паллет, составу реестра и изменению агрегации согласовываются с поклажедателем до начала работ</p></div>
+      </div>
+      <figure class="chz-figure chz-split__media">
+        <!-- МЕДИА № 7: chz-aggregation-1280.webp + .jpg (1280×960, 4:3), alt — предложение. На сайте заменить пути на фактические из медиатеки -->
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-aggregation-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-aggregation-1280.jpg" alt="Короб и паллета с кодами агрегации на складе «Космос-Логистик»" width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Ошибки и карантинная зона: текст + фото → таблица → примечание -->
+<section class="service_section chz-s">
+  <div class="container">
+    <div class="chz-split chz-split--text chz-split--media chz-split--center">
+      <div class="chz-text">
+        <h2>Ошибки и карантинная зона</h2>
+        <p>Товар с проблемой маркировки отделяется от доступного остатка и размещается в карантинной зоне. Склад фиксирует выявленную проблему и ожидает дальнейшее задание поклажедателя</p>
+      </div>
+      <figure class="chz-figure chz-split__media">
+        <!-- МЕДИА № 6: chz-quarantine-1280.webp + .jpg (1280×960, 4:3), alt — ТЗ. На сайте заменить пути на фактические из медиатеки -->
+        <picture>
+          <source srcset="../wp-content/uploads/chz/photos/chz-quarantine-1280.webp" type="image/webp">
+          <img src="../wp-content/uploads/chz/photos/chz-quarantine-1280.jpg" alt="Карантинная зона для товара с ошибкой кода маркировки." width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+    </div>
+    <div class="chz-table">
+      <table>
+        <thead><tr><th scope="col">Ситуация</th><th scope="col">Действие склада</th><th scope="col">Действие по заданию поклажедателя</th></tr></thead>
+        <tbody>
+          <tr><td>Data Matrix не считывается</td><td>Поместить товар в карантин</td><td>Повторная проверка, перемаркировка, возврат или другой сценарий</td></tr>
+          <tr><td>Этикетка отсутствует</td><td>Зафиксировать отсутствие и поместить товар в карантин</td><td>Передать корректную этикетку, вернуть товар или выбрать другой сценарий</td></tr>
+          <tr><td>Обнаружен дубль кода</td><td>Заблокировать дальнейшую складскую обработку единицы</td><td>Проверить происхождение кода и определить дальнейшее действие</td></tr>
+          <tr><td>Код не соответствует артикулу</td><td>Отделить единицу от доступного остатка</td><td>Исправить задание, подтвердить пересорт, выполнить перемаркировку или возврат</td></tr>
+          <tr><td>Повреждена упаковка</td><td>Зафиксировать дефект и поместить товар в карантин</td><td>Переупаковать, перемаркировать, вернуть или списать</td></tr>
+          <tr><td>Возвращен маркированный товар</td><td>Просканировать код, осмотреть товар и поместить его в карантин</td><td>Вернуть в доступный остаток, переупаковать, перемаркировать, вернуть поставщику или списать</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chz-card-helper"><p class="chz-card-helper__text">Склад не возвращает проблемный товар в доступный остаток и не выполняет операции с маркировкой без задания поклажедателя</p></div>
+  </div>
+</section>
+
+<!-- 10. Что требуется для запуска -->
+<section class="service_section chz-s">
+  <div class="container">
+    <h2>Что требуется для запуска</h2>
+    <ul class="chz-list chz-list--check chz-list--boxes">
+      <li>Товарная группа</li>
+      <li>Перечень артикулов</li>
+      <li>Ожидаемое количество единиц</li>
+      <li>Правила сопоставления кодов и артикулов</li>
+      <li>Требования к учету партии и срока годности</li>
+      <li>Контрольные точки: вход, выход или оба этапа</li>
+      <li>Требования к агрегации</li>
+      <li>Регламент обработки ошибок и возвратов</li>
+    </ul>
+    <!-- Перелинковка ТЗ -->
+    <p class="chz-more"><a class="chz-link" href="https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/">Коды маркировки для FBO, FBS и DBS</a></p>
+  </div>
+</section>
+
+<!-- 11. Стоимость обработки: текст + кнопка заявки -->
+<section class="service_section chz-s">
+  <div class="container">
+    <div class="chz-cta">
+      <div class="chz-cta__text">
+        <h2>Стоимость обработки</h2>
+        <p>Стоимость рассчитывается после получения данных о товарной группе, количестве единиц и артикулов, требуемых контрольных точках, состоянии маркировки, необходимости распаковки, переупаковки, агрегации и обмена данными</p>
+      </div>
+      <div class="chz-actions">
+        <a class="btn" href="#callback-popup" data-fancybox data-event="chestny_znak_calculation_click">Рассчитать обработку партии</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. FAQ (22 вопроса). Структура — аккордеон темы; FAQPage в <head> собирается из этого блока -->
+<section class="service_section chz-s" id="chz-faq">
+  <div class="container">
+    <h2>FAQ</h2>
+    <ul class="faq_items">
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-1" data-event="faq_open">Что входит в услугу маркировки «Честный ЗНАК» на складе?</button></h3>
+        <div class="faq_item_content" id="chz-faq-1"><div><p>«Космос-Логистик» сканирует Data Matrix при приемке и отгрузке, сопоставляет коды с артикулами, фиксирует результаты в WMS и формирует реестры XLSX или XML. Агрегация и обмен электронными документами выполняются по согласованию</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-2" data-event="faq_open">Сканируется ли каждая единица товара?</button></h3>
+        <div class="faq_item_content" id="chz-faq-2"><div><p>Да. Код каждой маркированной единицы считывается терминалом сбора данных и фиксируется в WMS</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-3" data-event="faq_open">Можно заказать контроль только при приемке?</button></h3>
+        <div class="faq_item_content" id="chz-faq-3"><div><p>Да. После приемки и сканирования партии поклажедатель получает входной реестр кодов в формате XLSX или XML</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-4" data-event="faq_open">Можно заказать контроль только перед отгрузкой?</button></h3>
+        <div class="faq_item_content" id="chz-faq-4"><div><p>Да. После комплектации заказ переводится в операцию «Упаковка», где коды всех товарных единиц сканируются и привязываются к заказу</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-5" data-event="faq_open">Можно заказать контроль на входе и на выходе?</button></h3>
+        <div class="faq_item_content" id="chz-faq-5"><div><p>Да. При сквозном контроле коды сканируются при приемке и повторно перед отгрузкой сформированного заказа</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-6" data-event="faq_open">Какой результат передается после приемки?</button></h3>
+        <div class="faq_item_content" id="chz-faq-6"><div><p>Поклажедателю передается реестр кодов, фактически отсканированных при приемке партии</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-7" data-event="faq_open">Какой результат передается после формирования заказа?</button></h3>
+        <div class="faq_item_content" id="chz-faq-7"><div><p>Поклажедателю передается отдельный реестр кодов маркировки товарных единиц, вошедших в конкретный заказ</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-8" data-event="faq_open">В каких форматах передаются реестры?</button></h3>
+        <div class="faq_item_content" id="chz-faq-8"><div><p>Реестры предоставляются в формате XLSX или в машиночитаемом формате XML</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-9" data-event="faq_open">Что проверяет WMS?</button></h3>
+        <div class="faq_item_content" id="chz-faq-9"><div><p>WMS сопоставляет код с артикулом, фиксирует его принадлежность к поставке и заказу, выявляет повторное появление кода в учетном контуре и сохраняет историю складских операций</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-10" data-event="faq_open">Можно учитывать партию и срок годности?</button></h3>
+        <div class="faq_item_content" id="chz-faq-10"><div><p>Да. Партия и срок годности учитываются при наличии необходимых данных и настроенного задания</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-11" data-event="faq_open">Проверяется ли государственный статус кода в ГИС МТ?</button></h3>
+        <div class="faq_item_content" id="chz-faq-11"><div><p>Онлайн-проверка государственного статуса кода не входит в стандартную складскую услугу</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-12" data-event="faq_open">Передает ли склад данные напрямую в ГИС МТ?</button></h3>
+        <div class="faq_item_content" id="chz-faq-12"><div><p>В стандартной схеме склад передает поклажедателю реестры XLSX или XML. Передача электронных документов через ЭДО и в ГИС МТ выполняется только по отдельному соглашению и при наличии необходимых полномочий</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-13" data-event="faq_open">Чем XML-реестр отличается от документа ЭДО?</button></h3>
+        <div class="faq_item_content" id="chz-faq-13"><div><p>XML-реестр содержит результаты складского сканирования. Электронный документ ЭДО формируется в установленном формате, подписывается уполномоченными сторонами и передается через оператора электронного документооборота</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-14" data-event="faq_open">Что происходит с нечитаемым кодом?</button></h3>
+        <div class="faq_item_content" id="chz-faq-14"><div><p>Товар помещается в карантинную зону до получения задания поклажедателя</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-15" data-event="faq_open">Что происходит при обнаружении дубля?</button></h3>
+        <div class="faq_item_content" id="chz-faq-15"><div><p>Дальнейшая складская обработка единицы блокируется. Товар помещается в карантин, а информация о проблеме передается поклажедателю</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-16" data-event="faq_open">Что происходит при несоответствии кода артикулу?</button></h3>
+        <div class="faq_item_content" id="chz-faq-16"><div><p>Товар отделяется от доступного остатка и помещается в карантин. Дальнейшие действия выполняются по заданию поклажедателя</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-17" data-event="faq_open">Как обрабатывается товар без этикетки?</button></h3>
+        <div class="faq_item_content" id="chz-faq-17"><div><p>Отсутствие этикетки фиксируется при приемке. Товар помещается в карантин до передачи поклажедателем корректной этикетки или другого задания</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-18" data-event="faq_open">Как обрабатываются возвраты?</button></h3>
+        <div class="faq_item_content" id="chz-faq-18"><div><p>Возвращенная единица сканируется, осматривается и помещается в карантин. Поклажедатель определяет дальнейший сценарий обработки</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-19" data-event="faq_open">Выполняется ли агрегация кодов?</button></h3>
+        <div class="faq_item_content" id="chz-faq-19"><div><p>Да. По согласованному регламенту коды товарных единиц связываются с кодами коробов и паллет</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-20" data-event="faq_open">Можно передать данные в учетную систему поклажедателя?</button></h3>
+        <div class="faq_item_content" id="chz-faq-20"><div><p>Базовые форматы передачи — XLSX и XML. Дополнительная интеграция согласовывается отдельно</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-21" data-event="faq_open">Кто определяет дальнейшие действия с проблемным товаром?</button></h3>
+        <div class="faq_item_content" id="chz-faq-21"><div><p>Решение принимает поклажедатель. Склад выполняет полученное задание и фиксирует результат операции в WMS</p></div></div>
+      </li>
+      <li class="faq_item">
+        <h3><button type="button" class="faq_item_trigger" aria-expanded="false" aria-controls="chz-faq-22" data-event="faq_open">От чего зависит стоимость?</button></h3>
+        <div class="faq_item_content" id="chz-faq-22"><div><p>Стоимость зависит от количества единиц и артикулов, контрольных точек, состояния маркировки, необходимости распаковки, переупаковки, агрегации и выбранного формата обмена</p></div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================= CHZ:END task2-page ========================= -->
+
+<!-- 13. Форма заявки — действующая форма сайта: секцию .order_form выводит тема (не дублировать) -->
+<div class="pv-theme-block">Здесь тема выводит секцию формы <code>.order_form</code> — действующая форма обратной связи (ТЗ, задание 2).<br>События формы chestny_znak_form_start / form_submit / phone_click настраивает разработчик.</div>
+
+</main>
+<script src="../js/chz-preview.js"></script>
+</body>
+</html>
