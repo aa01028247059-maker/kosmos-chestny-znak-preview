@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO (ТЗ, задание 4). На сайте задаются через Yoast: фокусная фраза «учет кодов маркировки на складе», ярлык uchet-kodov-markirovki-na-sklade ===== -->
+  <title>Учет кодов маркировки на складе: приемка и отгрузка</title>
+  <meta name="description" content="Сканирование Data Matrix при приемке, фиксация в WMS, карантин ошибок, контроль при упаковке и реестр кодов по каждому заказу.">
+  <link rel="canonical" href="https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/">
+  <meta property="og:title" content="Учет кодов маркировки на складе: приемка и отгрузка">
+  <meta property="og:description" content="Сканирование Data Matrix при приемке, фиксация в WMS, карантин ошибок, контроль при упаковке и реестр кодов по каждому заказу.">
+  <meta property="og:url" content="https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/">
+  <meta property="og:type" content="article">
+  <!-- og:image — абсолютный URL обложки статьи ≥ 1200 px, подставить после загрузки -->
+  <meta property="og:image" content="{{featuredImageUrl}}">
+
+  <!-- JSON-LD: WebPage, BlogPosting, BreadcrumbList — собрано по структуре задания 3 со значениями ТЗ (задание 4, стр. 30).
+       Organization и WebSite — глобальные на сайте. Плейсхолдеры {{…}} заменяет разработчик: реальная обложка ≥ 1200 px и фактические даты ISO 8601. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/#webpage",
+        "url": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/",
+        "name": "Как учитывать коды маркировки на входе и выходе со склада",
+        "isPartOf": {"@id": "https://kosmoslogistic.com/#website"},
+        "breadcrumb": {"@id": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/#breadcrumb"}
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/#article",
+        "headline": "Как учитывать коды маркировки на входе и выходе со склада",
+        "description": "Поэкземплярный учет Data Matrix при приемке, хранении, комплектации и отгрузке.",
+        "mainEntityOfPage": {"@id": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/#webpage"},
+        "author": {"@id": "https://kosmoslogistic.com/#organization"},
+        "publisher": {"@id": "https://kosmoslogistic.com/#organization"},
+        "image": ["{{featuredImageUrl}}"],
+        "datePublished": "{{datePublishedISO}}",
+        "dateModified": "{{dateModifiedISO}}",
+        "inLanguage": "ru-RU",
+        "about": ["Учет кодов маркировки", "Приемка маркированного товара", "Отгрузка маркированного товара", "WMS", "Data Matrix"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/#breadcrumb",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://kosmoslogistic.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://kosmoslogistic.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "Учет кодов на входе и выходе", "item": "https://kosmoslogistic.com/blog/uchet-kodov-markirovki-na-sklade/"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- FAQPage — собирается из видимого FAQ: execution/faq_jsonld.py (не править вручную) -->
+  <!-- FAQPAGE:BEGIN -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Зачем повторно сканировать код перед отгрузкой?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Повторное сканирование связывает конкретный код с конкретным сформированным заказом и подтверждает фактический состав отгрузки"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда формируется входной реестр?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Реестр формируется после завершения сканирования партии и до размещения товара на хранение"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда формируется реестр заказа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Реестр формируется после сканирования кодов в операции «Упаковка» и до отгрузки заказа"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно заказать только одну контрольную точку?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Поклажедатель может заказать контроль только на входе или только на выходе"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как код сопоставляется с артикулом?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сотрудник считывает Data Matrix терминалом сбора данных, после чего WMS сопоставляет полученные данные с товарной позицией"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что происходит с дублем или отсутствующей этикеткой?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Товар помещается в карантинную зону до получения задания поклажедателя"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как учитывается возврат?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Возвращенная единица сканируется, осматривается и помещается в карантин до выбора дальнейшего сценария"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем XLSX отличается от XML и ЭДО?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "XLSX используется для просмотра реестра, XML — для машинной обработки, ЭДО — для обмена юридически значимыми электронными документами"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQPAGE:END -->
+
+  <!-- CSS темы (на сайте подключен на страницах статей) -->
+  <link rel="stylesheet" href="../vendor/blog-single.css">
+  <!-- Подключить ПОСЛЕ blog-single.css -->
+  <link rel="stylesheet" href="../css/chz-blog.css">
+  <style>
+    /* ===== Только предпросмотр (pv-), на сайт не переносится ===== */
+    body { padding-top: 0; }
+    .pv-legend { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 12px 24px;
+      background: #fff; border-bottom: 1px solid #d8dfe8; font: 400 13px/1.5 "Manrope", sans-serif; color: #242a33; }
+    .pv-legend b { font-weight: 700; margin-right: auto; }
+    .single-hero__image picture { display: block; height: 100%; } /* <picture> — строчный элемент; img темы растянут на 100 % высоты рамки */
+    .pv-theme-block { max-width: 1300px; margin: 125px auto; padding: 48px 24px; border: 2px dashed #d8dfe8;
+      font: 600 14px/1.6 "Manrope", sans-serif; color: #5a7494; text-align: center; }
+    .pv-theme-block--inline { margin: 48px 0 0; padding: 32px 24px; }
+    .pv-theme-block--side { margin: 2px 0 0; padding: 32px 24px; }
+    @media (max-width: 640px) { .pv-legend { padding: 12px 16px; } .pv-theme-block { margin: 50px 16px; } .pv-theme-block--inline { margin: 48px 0 0; } .pv-theme-block--side { margin: 2px 0 0; } }
+  </style>
+</head>
+<body>
+
+<div class="pv-legend">
+  <b>Задание 4 · статья об учете кодов · предпросмотр</b>
+</div>
+
+<main>
+
+<!-- ===== Герой — шаблон темы из полей записи (заголовок, рубрика «Фулфилмент», обложка). НЕ переносится: только для предпросмотра ===== -->
+<section class="single-hero">
+  <div class="single-hero__inner">
+    <nav class="single-hero__breadcrumb" aria-label="Хлебные крошки">
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/">Главная</a><span class="single-hero__breadcrumb-sep">›</span>
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/blog/">Блог</a><span class="single-hero__breadcrumb-sep">›</span>
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/category/fulfilment/">Фулфилмент</a><span class="single-hero__breadcrumb-sep">›</span>
+      <span class="single-hero__breadcrumb-current">Учет кодов на входе и выходе</span>
+    </nav>
+    <div class="single-hero__content">
+      <span class="single-hero__category">Фулфилмент</span>
+      <h1 class="single-hero__title">Как учитывать коды маркировки на входе и выходе со склада</h1>
+      <div class="single-hero__meta">
+        <span class="single-hero__date">Дата публикации</span>
+        <span class="single-hero__read-time">Время чтения</span>
+      </div>
+    </div>
+    <!-- Обложка = изображение записи (featured image): 1264 × 848 (3 : 2), WebP + запасной JPG из design/wp-content/uploads/chz/photos/.
+         Тема обрезает ее: шапка 16 : 7, карточки 16 : 9; og:image и BlogPosting.image — абсолютный URL этого файла после загрузки.
+         alt — заголовок статьи (как у обложек действующих статей) -->
+    <div class="single-hero__image">
+      <picture>
+        <source srcset="../wp-content/uploads/chz/photos/chz-b-accounting-1264.webp" type="image/webp">
+        <img src="../wp-content/uploads/chz/photos/chz-b-accounting-1264.jpg" alt="Как учитывать коды маркировки на входе и выходе со склада" width="1264" height="848" loading="eager" decoding="async">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<section class="single-body">
+  <div class="single-body__inner">
+    <article class="single-body__article">
+      <div class="single-body__text">
+<!-- ======================== CHZ:BEGIN task4-article ========================
+     Задание 4. Содержимое записи /blog/uchet-kodov-markirovki-na-sklade/ — всё до CHZ:END
+     вставить в редактор записи как HTML. Обертка .chz-b — стили design/css/chz-blog.css (после blog-single.css).
+     H2 с id="section-N" — по ним тема строит «Содержание» в сайдбаре.
+     ======================================================================== -->
+        <div class="chz-b">
+          <p>Поэкземплярный учет кодов маркировки строится на двух контрольных точках: приемке товара и подготовке заказа к отгрузке. Код Data Matrix каждой единицы считывается терминалом сбора данных и фиксируется в WMS</p>
+          <!-- Определение поклажедателя — первое употребление на странице (п. 2 общих требований ТЗ) -->
+          <div class="chz-b-note">
+            <p><strong>Поклажедатель</strong> — организация, индивидуальный предприниматель или физическое лицо, передающие товар на склад для хранения и складской обработки. По заданию поклажедателя склад выполняет контроль только на входе, только на выходе или на обоих этапах</p>
+            <p>Термин «поклажедатель» используется для стороны, передающей вещь хранителю по договору хранения</p>
+          </div>
+          <!-- Схема-обзор (раздел ТЗ «Медиафайлы», статья об учете) — текстом в HTML -->
+          <ul class="chz-b-chain">
+            <li><span class="chz-b-chain__step">Приемка</span></li>
+            <li><span class="chz-b-chain__step">Сканирование</span></li>
+            <li><span class="chz-b-chain__step">WMS</span></li>
+            <li><span class="chz-b-chain__step">Хранение</span></li>
+            <li><span class="chz-b-chain__step">Комплектация</span></li>
+            <li><span class="chz-b-chain__step">Упаковка</span></li>
+            <li><span class="chz-b-chain__step">Повторное сканирование</span></li>
+            <li><span class="chz-b-chain__step">Реестр</span></li>
+            <li><span class="chz-b-chain__step">Отгрузка</span></li>
+          </ul>
+
+          <h2 id="section-1">Данные для начала приемки</h2>
+          <ul>
+            <li>Перечень артикулов</li>
+            <li>Ожидаемое количество товарных единиц</li>
+            <li>Требования к сопоставлению артикулов и кодов</li>
+            <li>Требования к учету партии и срока годности</li>
+            <li>Формат выходного реестра: XLSX или XML</li>
+            <li>Регламент обработки дублей, отсутствующих этикеток и несоответствий</li>
+          </ul>
+
+          <h2 id="section-2">Учет кодов при приемке</h2>
+          <p>После разгрузки склад принимает товар по артикулам. Data Matrix каждой маркированной единицы сканируется терминалом сбора данных. WMS связывает код с артикулом, поставкой и поклажедателем</p>
+          <p>Проблемная единица помещается в карантинную зону. После завершения приемки система формирует входной реестр. Реестр передается поклажедателю до размещения товара на хранение</p>
+
+          <h2 id="section-3">Размещение и хранение</h2>
+          <p>После завершения приемки годный товар размещается на хранение. Информация о принятом коде сохраняется в WMS вместе с данными о поставке и товарной позиции</p>
+          <p>При настроенном процессе дополнительно учитываются партия и срок годности</p>
+
+          <h2 id="section-4">Комплектация заказа</h2>
+          <p>Склад получает заявку поклажедателя и комплектует заказ по артикулам. После завершения отбора груз переводится в WMS в операцию «Упаковка»</p>
+
+          <h2 id="section-5">Контроль в операции «Упаковка»</h2>
+          <p>В операции «Упаковка» выполняются дополнительная упаковка заказа и обязательное сканирование Data Matrix каждой товарной единицы. WMS связывает коды с номером сформированного заказа</p>
+          <p>Товар с ошибкой кода не передается к обычной отгрузке и направляется в карантинную зону</p>
+
+          <h2 id="section-6">Выходной реестр</h2>
+          <p>После завершения упаковки автоматически формируется реестр кодов конкретного заказа. Реестр передается поклажедателю в формате XLSX или XML до отгрузки товара</p>
+
+          <h2 id="section-7">Схема движения кода</h2>
+          <ul class="chz-b-chain">
+            <li><span class="chz-b-chain__step">Задание поклажедателя</span></li>
+            <li><span class="chz-b-chain__step">Разгрузка</span></li>
+            <li><span class="chz-b-chain__step">Приемка по артикулу</span></li>
+            <li><span class="chz-b-chain__step">Сканирование каждого Data Matrix</span></li>
+            <li><span class="chz-b-chain__step">Фиксация в WMS</span></li>
+            <li><span class="chz-b-chain__step">Карантин исключений</span></li>
+            <li><span class="chz-b-chain__step">Размещение</span></li>
+            <li><span class="chz-b-chain__step">Комплектация</span></li>
+            <li><span class="chz-b-chain__step">Операция «Упаковка»</span></li>
+            <li><span class="chz-b-chain__step">Повторное сканирование</span></li>
+            <li><span class="chz-b-chain__step">Реестр заказа</span></li>
+            <li><span class="chz-b-chain__step">Отгрузка</span></li>
+          </ul>
+
+          <h2 id="section-8">Контрольные точки</h2>
+          <div class="chz-b-table">
+            <table>
+              <thead><tr><th scope="col">Контрольная точка</th><th scope="col">Данные</th><th scope="col">Результат</th></tr></thead>
+              <tbody>
+                <tr><td>Приемка</td><td>Артикул, код, поставка, результат; партия и срок при настроенном учете</td><td>Входной реестр</td></tr>
+                <tr><td>Размещение</td><td>Связь кода с товарной позицией и поставкой</td><td>Запись в WMS</td></tr>
+                <tr><td>Комплектация</td><td>Артикулы и количество по заявке</td><td>Сформированный заказ</td></tr>
+                <tr><td>Упаковка</td><td>Коды фактически собранных единиц</td><td>Реестр заказа</td></tr>
+                <tr><td>Возврат</td><td>Код, артикул, состояние и причина возврата</td><td>Запись о карантине и дальнейшее задание</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="section-9">Возвраты маркированного товара</h2>
+          <p>Возвращенная товарная единица сканируется, осматривается и помещается в карантинную зону. Склад фиксирует код, артикул, состояние товара и причину возврата</p>
+          <p>Поклажедатель выбирает дальнейший сценарий: возврат в доступный остаток, переупаковка, перемаркировка, возврат поставщику, списание или другое действие</p>
+
+          <h2 id="section-10">XLSX, XML и ЭДО</h2>
+          <div class="chz-b-table chz-b-table--fit">
+            <table>
+              <thead><tr><th scope="col">Способ</th><th scope="col">Применение</th></tr></thead>
+              <tbody>
+                <tr><td>XLSX</td><td>Просмотр, проверка и ручная обработка реестра поклажедателем</td></tr>
+                <tr><td>XML</td><td>Машинная обработка и загрузка в учетную систему поклажедателя</td></tr>
+                <tr><td>ЭДО</td><td>Обмен юридически значимыми электронными документами по согласованной схеме</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- «Контур» — подставить точное коммерческое название сервиса (п. 10 общих требований ТЗ) -->
+          <p>В стандартной схеме склад передает поклажедателю XLSX- или XML-реестр. Обмен через оператора ЭДО «Контур» подключается по дополнительному соглашению</p>
+
+          <h2 id="section-11">Часто задаваемые вопросы</h2>
+          <!-- FAQ текстом, как во всех статьях блога. Совпадает с FAQPage в <head> дословно. В ТЗ заголовок «FAQ» — переименован по решению пользователя -->
+          <div class="chz-b-faq" id="chz-faq">
+            <p><b>Зачем повторно сканировать код перед отгрузкой?</b> Повторное сканирование связывает конкретный код с конкретным сформированным заказом и подтверждает фактический состав отгрузки</p>
+            <p><b>Когда формируется входной реестр?</b> Реестр формируется после завершения сканирования партии и до размещения товара на хранение</p>
+            <p><b>Когда формируется реестр заказа?</b> Реестр формируется после сканирования кодов в операции «Упаковка» и до отгрузки заказа</p>
+            <p><b>Можно заказать только одну контрольную точку?</b> Да. Поклажедатель может заказать контроль только на входе или только на выходе</p>
+            <p><b>Как код сопоставляется с артикулом?</b> Сотрудник считывает Data Matrix терминалом сбора данных, после чего WMS сопоставляет полученные данные с товарной позицией</p>
+            <p><b>Что происходит с дублем или отсутствующей этикеткой?</b> Товар помещается в карантинную зону до получения задания поклажедателя</p>
+            <p><b>Как учитывается возврат?</b> Возвращенная единица сканируется, осматривается и помещается в карантин до выбора дальнейшего сценария</p>
+            <p><b>Чем XLSX отличается от XML и ЭДО?</b> XLSX используется для просмотра реестра, XML — для машинной обработки, ЭДО — для обмена юридически значимыми электронными документами</p>
+          </div>
+
+          <!-- CTA. Кнопка — существующая всплывающая форма сайта #callback-popup; ссылка — перелинковка ТЗ (анкор из таблицы) -->
+          <div class="chz-b-cta">
+            <div class="chz-b-cta__label"><span>Услуга склада</span></div>
+            <h2>Настроить входной и выходной контроль кодов</h2>
+            <p>Передайте перечень артикулов, количество единиц и требования к реестру. Подготовим схему обработки товара на складе</p>
+            <div class="chz-b-cta__actions">
+              <a class="btn btn_white" href="#callback-popup" data-fancybox data-event="chestny_znak_calculation_click">Получить расчет</a>
+              <a class="chz-b-cta__link" href="task2-markirovka.html" data-event="article_to_service_click">Поштучный учет кодов в WMS</a>
+            </div>
+          </div>
+        </div>
+<!-- ======================== CHZ:END task4-article ======================== -->
+      </div>
+      <!-- «Поделиться» выводит тема — не переносится -->
+      <div class="pv-theme-block pv-theme-block--inline">Здесь тема выводит блок «Поделиться» <code>.single-body__share</code>: Telegram, WhatsApp, «Скопировать ссылку» — ссылки на эту статью тема строит сама</div>
+    </article>
+
+    <!-- ===== Сайдбар — шаблон темы («Содержание» строится из H2 с id="section-N», рубрики). НЕ переносится ===== -->
+    <aside class="single-body__sidebar">
+      <div class="single-body__sidebar-block">
+        <div class="single-body__sidebar-title">Содержание</div>
+        <div class="single-body__toc">
+          <a class="single-body__toc-item" href="#section-1"><span class="single-body__toc-num">01</span>Данные для начала приемки</a>
+          <a class="single-body__toc-item" href="#section-2"><span class="single-body__toc-num">02</span>Учет кодов при приемке</a>
+          <a class="single-body__toc-item" href="#section-3"><span class="single-body__toc-num">03</span>Размещение и хранение</a>
+          <a class="single-body__toc-item" href="#section-4"><span class="single-body__toc-num">04</span>Комплектация заказа</a>
+          <a class="single-body__toc-item" href="#section-5"><span class="single-body__toc-num">05</span>Контроль в операции «Упаковка»</a>
+          <a class="single-body__toc-item" href="#section-6"><span class="single-body__toc-num">06</span>Выходной реестр</a>
+          <a class="single-body__toc-item" href="#section-7"><span class="single-body__toc-num">07</span>Схема движения кода</a>
+          <a class="single-body__toc-item" href="#section-8"><span class="single-body__toc-num">08</span>Контрольные точки</a>
+          <a class="single-body__toc-item" href="#section-9"><span class="single-body__toc-num">09</span>Возвраты маркированного товара</a>
+          <a class="single-body__toc-item" href="#section-10"><span class="single-body__toc-num">10</span>XLSX, XML и ЭДО</a>
+          <a class="single-body__toc-item" href="#section-11"><span class="single-body__toc-num">11</span>Часто задаваемые вопросы</a>
+        </div>
+      </div>
+      <!-- «Категории» выводит тема — не переносится -->
+      <div class="pv-theme-block pv-theme-block--side">Здесь тема выводит блок «Категории» <code>.single-body__cat-list</code> — рубрики блога с количеством статей</div>
+    </aside>
+  </div>
+</section>
+
+<!-- «Похожие статьи» выводит тема — не переносится -->
+<div class="pv-theme-block">Здесь тема выводит секцию «Читайте также · Похожие статьи» <code>.related</code> — 3 карточки записей, тема подбирает их автоматически.<br>Чтобы рядом со статьей показывались другие статьи о маркировке (задания 3 и 5), всем трем назначить рубрику «Фулфилмент»</div>
+
+</main>
+<script src="../js/chz-preview.js"></script>
+</body>
+</html>

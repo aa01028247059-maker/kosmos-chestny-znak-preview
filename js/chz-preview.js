@@ -15,6 +15,24 @@
     document.body.prepend(bar);
   }
 
+  // Ссылки сайта короткие (/services/…, /blog/…): на локальном сервере они вели бы на 127.0.0.1 и давали 404.
+  // В предпросмотре: наши страницы → их предпросмотр, остальные → живой сайт. Разметку для сайта не меняет
+  // (этот файл не переносится); на GitHub Pages ссылки уже переписаны сборкой build_view.py.
+  var PV_PAGES = {
+    '/services/upakovka-i-markirovka-tovara/': 'task1-upakovka.html',
+    '/services/markirovka-chestnyj-znak/': 'task2-markirovka.html',
+    '/blog/validaciya-kodov-chestnyj-znak-na-sklade/': 'task3-validaciya.html',
+    '/blog/uchet-kodov-markirovki-na-sklade/': 'task4-uchet.html',
+    '/blog/kody-markirovki-fbo-fbs-dbs/': 'task5-fbo-fbs-dbs.html'
+  };
+  if (location.protocol.indexOf('http') === 0) {
+    document.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach(function (a) {
+      var path = a.getAttribute('href');
+      var base = location.pathname.replace(/[^/]*$/, '');
+      a.href = PV_PAGES[path] ? base + PV_PAGES[path] : 'https://kosmoslogistic.com' + path;
+    });
+  }
+
   // Аккордеон FAQ. Два режима:
   //  • «режим правок» — на странице есть пункты .faq_item.pv-open (вопросы с правками, задание 1):
   //    они открыты сразу, пункты открываются независимо — разработчику видно все правки;

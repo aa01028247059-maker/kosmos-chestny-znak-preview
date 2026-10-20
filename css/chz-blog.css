@@ -1,0 +1,187 @@
+/* ==========================================================================
+   chz-blog.css — статьи блога «Честный ЗНАК» (задания 3–5)
+   Подключать ПОСЛЕ blog-single.css темы devseopro.com.
+   Все значения выбраны из blog-single.css — см. design/style_selection.md, раздел 2.
+   Правки к классам темы действуют только внутри .chz-b (ставится на .single-body__text),
+   новые компоненты — с префиксом chz-b-. Стиль блога: острые углы, заголовки капсом.
+   ========================================================================== */
+
+/* ---------- 1. Токены ---------- */
+:root {
+  /* Цвета: текст — не больше двух на светлом фоне */
+  --chz-b-text: #5a7494;
+  --chz-b-heading: #093159;
+  --chz-b-inverse: #fff;
+  --chz-b-inverse-2: rgba(255, 255, 255, .65);
+  --chz-b-bg: #f3f5f8;
+  --chz-b-card: #fff;
+  --chz-b-tint: #eef2f7;
+  --chz-b-border: #d8dfe8;
+
+  /* Типографика */
+  --chz-b-font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --chz-b-h2: 800 30px/1.1 var(--chz-b-font);
+  --chz-b-h3: 700 22px/1.2 var(--chz-b-font);
+  --chz-b-body: 400 18px/1.8 var(--chz-b-font);
+  --chz-b-text-m: 400 15px/1.65 var(--chz-b-font);
+  --chz-b-caption: 400 13px/1.4 var(--chz-b-font);
+  --chz-b-label: 600 12px/1.4 var(--chz-b-font);
+  --chz-b-label-ls: .14em;
+
+  /* Отступы и формы */
+  --chz-b-radius: 0;
+  --chz-b-gap-tight: 2px;
+  --chz-b-gap: 16px;
+  --chz-b-pad: 24px;
+  --chz-b-space: 32px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --chz-b-h2: 800 24px/1.1 var(--chz-b-font);
+    --chz-b-h3: 700 20px/1.2 var(--chz-b-font);
+    --chz-b-body: 400 16px/1.8 var(--chz-b-font);
+    --chz-b-pad: 20px;
+  }
+}
+
+/* ---------- 2. Обертка .chz-b (на .single-body__text): заголовки и текст ---------- */
+.chz-b { color: var(--chz-b-text); }
+.chz-b h2 { font: var(--chz-b-h2); text-transform: uppercase; color: var(--chz-b-heading); margin: 48px 0 16px; }
+.chz-b h3 { font: var(--chz-b-h3); text-transform: uppercase; color: var(--chz-b-heading); margin: 36px 0 12px; }
+.chz-b > h2:first-child { margin-top: 0; }
+.chz-b p { font: var(--chz-b-body); }
+/* Списки — тем же стилем, что абзацы (в теме 15px; см. «Отступления» в style_selection.md) */
+.chz-b ul li,
+.chz-b ol li { font: var(--chz-b-body); }
+.chz-b ul li::before { top: .75em; }
+/* Номер в ol темы рассчитан на 15px текста — выравниваем по нашей строке */
+.chz-b ol li::before { font-size: inherit; line-height: inherit; }
+/* Внешняя ссылка (официальные инструкции площадок, задание 5): стрелка ↗ в конце — признак перехода на другой сайт.
+   Стрелка стилем, а не текстом: не попадает в анкор, привязана к последнему слову неразрывным пробелом */
+.chz-b a.chz-b-ext::after { content: "\00a0\2197"; }
+/* Список с галочками (чек-лист, задание 5): форма — иконка темы icon-stroke.svg (как .chz-list--check услуг),
+   цвет — заголовков блога через маску */
+.chz-b .chz-b-list--check li { padding-left: 24px; }
+.chz-b .chz-b-list--check li::before {
+  top: .65em; width: 12px; height: auto; aspect-ratio: 4 / 3; /* пропорция иконки 12 × 9 */ border-radius: 0; background: var(--chz-b-heading);
+  -webkit-mask: url("../wp-content/uploads/2026/08/icon-stroke.svg") no-repeat center / contain;
+  mask: url("../wp-content/uploads/2026/08/icon-stroke.svg") no-repeat center / contain;
+}
+
+/* ---------- 3. Таблица ---------- */
+/* Новый компонент на токенах блога: белая, острые углы, рамка #d8dfe8 */
+.chz-b-table { margin: var(--chz-b-space) 0; background: var(--chz-b-card); border: 1px solid var(--chz-b-border); border-radius: var(--chz-b-radius); }
+.chz-b-table table { width: 100%; border-collapse: collapse; }
+.chz-b-table th,
+.chz-b-table td { text-align: left; vertical-align: top; padding: 14px 16px; border-bottom: 1px solid var(--chz-b-border); overflow-wrap: break-word; /* не anywhere: тот разрывает строку и на неразрывных пробелах типографа */ }
+.chz-b-table th {
+  vertical-align: middle; /* заголовки разной высоты (перенос в одном из них) — по центру строки */
+  background: var(--chz-b-tint); color: var(--chz-b-heading);
+  font: var(--chz-b-label); letter-spacing: var(--chz-b-label-ls); text-transform: uppercase;
+}
+.chz-b-table td { font: var(--chz-b-text-m); color: var(--chz-b-text); }
+.chz-b-table td:first-child { color: var(--chz-b-heading); font-weight: 600; }
+.chz-b-table tbody tr:last-child td { border-bottom: none; }
+@media (max-width: 1024px) {
+  .chz-b-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .chz-b-table table { min-width: 640px; }
+  /* --fit: таблица из 2 колонок умещается в ширину экрана — без прокрутки (решение 2026-10-20) */
+  .chz-b-table--fit { overflow-x: visible; }
+  .chz-b-table--fit table { min-width: 0; }
+}
+
+/* ---------- 4. Схема-цепочка ---------- */
+/* «Считывание Data Matrix → сопоставление с артикулом → …» */
+.chz-b-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: var(--chz-b-space) 0; padding: 0; list-style: none; }
+.chz-b .chz-b-chain li { display: flex; align-items: center; gap: 8px; padding: 0; margin: 0; font: 600 15px/1.65 var(--chz-b-font); color: var(--chz-b-heading); }
+.chz-b .chz-b-chain li::before { display: none; }
+.chz-b-chain__step { padding: 12px 16px; background: var(--chz-b-card); border: 1px solid var(--chz-b-border); }
+.chz-b .chz-b-chain li + li::before { display: inline; content: "→"; position: static; width: auto; height: auto; background: none; color: var(--chz-b-heading); }
+/* Подпись цепочки (сравнительная схема FBO / FBS / DBS, задание 5) — стиль шапки таблицы */
+.chz-b .chz-b-chain__label {
+  margin: var(--chz-b-space) 0 12px; color: var(--chz-b-heading);
+  font: var(--chz-b-label); letter-spacing: var(--chz-b-label-ls); text-transform: uppercase;
+}
+.chz-b-chain__label + .chz-b-chain { margin-top: 0; }
+@media (max-width: 640px) {
+  .chz-b-chain { flex-direction: column; align-items: stretch; }
+  .chz-b .chz-b-chain li { flex-direction: column; align-items: stretch; }
+  .chz-b .chz-b-chain li + li::before { content: "↓"; text-align: center; }
+}
+
+/* ---------- 5. Примечание / предупреждение ---------- */
+/* Основа: .single-body__text blockquote (белый фон, линия 3px слева), без курсива */
+.chz-b-note { margin: var(--chz-b-space) 0; padding: var(--chz-b-pad) 28px; background: var(--chz-b-card); border-left: 3px solid var(--chz-b-heading); }
+.chz-b .chz-b-note p,
+.chz-b-note p { font: var(--chz-b-text-m); color: var(--chz-b-text); margin: 0; }
+/* Несколько абзацев в плашке (определение поклажедателя + пояснение термина) */
+.chz-b .chz-b-note p + p,
+.chz-b-note p + p { margin-top: 12px; }
+.chz-b-note strong { color: var(--chz-b-heading); font-weight: 600; }
+@media (max-width: 640px) { .chz-b-note { padding: var(--chz-b-pad); } }
+
+/* ---------- 6. FAQ ---------- */
+/* Как во всех статьях блога: без аккордеона, обычные абзацы <p><b>Вопрос?</b> Ответ</p>.
+   Стилей не требуется — работают p и b темы (18/1.8, вопрос жирным тем же цветом текста).
+   Обертка .chz-b-faq — только смысловая метка блока для FAQPage. */
+
+/* ---------- 7. CTA ---------- */
+/* Основа: .consultation (тёмно-синий, надпись с линией, заголовок капсом), без формы */
+.chz-b-cta { margin: 48px 0 0; padding: 48px; background: var(--chz-b-heading); }
+.chz-b-cta__label { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.chz-b-cta__label::before { content: ""; width: 32px; height: 2px; background: rgba(255, 255, 255, .4); }
+.chz-b-cta__label span { font: var(--chz-b-label); letter-spacing: var(--chz-b-label-ls); text-transform: uppercase; color: var(--chz-b-inverse-2); }
+.chz-b .chz-b-cta h2 { margin: 0 0 20px; color: var(--chz-b-inverse); }
+.chz-b .chz-b-cta p { font: var(--chz-b-text-m); color: var(--chz-b-inverse-2); margin: 0; }
+.chz-b-cta__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--chz-b-gap) 24px; margin-top: var(--chz-b-pad); }
+.chz-b-cta__actions .btn { margin: 0; }
+/* Дополнительные ссылки CTA строкой под кнопкой (задание 5: страницы фулфилмента) — стиль .chz-b-cta__link */
+/* Отступ до строки ссылок = внутренний отступ CTA (48; на мобильном — 20, как padding там) — решение 2026-10-20 */
+.chz-b-cta__links { display: flex; flex-wrap: wrap; gap: var(--chz-b-gap) 24px; margin-top: 48px; }
+/* Ссылки в тексте статьи темы (.single-body__text a) синеют при наведении — на тёмно-синем фоне
+   это сливается с фоном. Внутри CTA изолируем: кнопка — как .btn_white темы,
+   ссылка остается белой и при наведении приподнимается на 2px, как .btn темы. */
+.chz-b .chz-b-cta .btn_white,
+.chz-b .chz-b-cta .btn_white:hover { color: #000; }
+.chz-b .chz-b-cta .btn_white { border-color: #fff; }
+.chz-b .chz-b-cta .btn_white:hover { border-color: #f5f5f5; }
+/* Селектор с a и двумя классами: глобальное правило темы a:not(.btn):not(.hero__btn):hover
+   имеет специфичность 0,3,1 и иначе перекрашивает ссылку в #093159 */
+.chz-b .chz-b-cta a.chz-b-cta__link,
+.chz-b .chz-b-cta a.chz-b-cta__link:hover {
+  display: inline-block; color: var(--chz-b-inverse); border-bottom: 1px solid rgba(255, 255, 255, .4);
+  font: 600 13px/1.4 var(--chz-b-font);
+}
+.chz-b .chz-b-cta a.chz-b-cta__link { transition: transform .2s ease; }
+.chz-b .chz-b-cta a.chz-b-cta__link:hover { transform: translateY(-2px); }
+.chz-b .chz-b-cta a.chz-b-cta__link:focus-visible { outline: 2px solid var(--chz-b-inverse); outline-offset: 2px; }
+@media (max-width: 640px) {
+  .chz-b-cta { padding: var(--chz-b-pad); }
+  .chz-b-cta__actions .btn { width: 100%; max-width: 100%; }
+  /* Зона нажатия ссылки не меньше 44 px (решение 2026-10-20) — берем 48: значение есть в теме, 44 нет.
+     Ссылки друг под другом, текст по центру блока. Подчеркивание — у текста (text-decoration), а не рамкой блока:
+     иначе линия уходит вниз на всю высоту. Строки ссылок вплотную — зоны нажатия не перекрываются, между текстами ≈ 30 px */
+  .chz-b .chz-b-cta a.chz-b-cta__link,
+  .chz-b .chz-b-cta a.chz-b-cta__link:hover {
+    display: flex; align-items: center; min-height: 48px; border-bottom: none;
+    text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .4); text-underline-offset: 4px;
+  }
+  .chz-b-cta__actions { flex-direction: column; align-items: stretch; row-gap: var(--chz-b-gap); } /* кнопка → ссылка 16 (решение 2026-10-20) */
+  .chz-b-cta__links { flex-direction: column; gap: 0; margin-top: var(--chz-b-pad); }
+}
+
+/* ---------- 8. Медиа и схемы-изображения ---------- */
+.chz-b-figure { margin: var(--chz-b-space) 0; }
+.chz-b .chz-b-figure img { display: block; width: 100%; height: auto; margin: 0; }
+.chz-b-figure figcaption { margin-top: 8px; font: var(--chz-b-caption); color: var(--chz-b-text); }
+.chz-b-figure__ph {
+  display: flex; align-items: center; justify-content: center; text-align: center; aspect-ratio: 16 / 7; padding: var(--chz-b-pad);
+  background: var(--chz-b-card); border: 1px dashed var(--chz-b-border); font: var(--chz-b-caption); color: var(--chz-b-text);
+}
+
+/* ---------- 9. Доступность ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .chz-b .chz-b-cta a.chz-b-cta__link { transition: none; }
+  .chz-b .chz-b-cta a.chz-b-cta__link:hover { transform: none; }
+}

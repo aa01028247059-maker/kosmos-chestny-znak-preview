@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO (ТЗ, задание 5). На сайте задаются через Yoast: фокусная фраза «коды маркировки FBO FBS DBS», ярлык kody-markirovki-fbo-fbs-dbs ===== -->
+  <title>«Честный ЗНАК» для FBO, FBS и DBS — коды маркировки</title>
+  <meta name="description" content="Где хранится товар, когда сканировать Data Matrix и как учитывать коды маркировки при работе по FBO, FBS и DBS.">
+  <link rel="canonical" href="https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/">
+  <meta property="og:title" content="«Честный ЗНАК» для FBO, FBS и DBS — коды маркировки">
+  <meta property="og:description" content="Где хранится товар, когда сканировать Data Matrix и как учитывать коды маркировки при работе по FBO, FBS и DBS.">
+  <meta property="og:url" content="https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/">
+  <meta property="og:type" content="article">
+  <!-- og:image — абсолютный URL обложки статьи ≥ 1200 px, подставить после загрузки -->
+  <meta property="og:image" content="{{featuredImageUrl}}">
+
+  <!-- JSON-LD: WebPage, BlogPosting, BreadcrumbList — собрано по структуре задания 3 со значениями ТЗ (задание 5, стр. 38).
+       Organization и WebSite — глобальные на сайте. Плейсхолдеры {{…}} заменяет разработчик: реальная обложка ≥ 1200 px и фактические даты ISO 8601.
+       dateModified = «Дата актуализации» в тексте статьи (одна и та же дата). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/#webpage",
+        "url": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/",
+        "name": "Коды маркировки для маркетплейсов: различия FBO, FBS и DBS",
+        "isPartOf": {"@id": "https://kosmoslogistic.com/#website"},
+        "breadcrumb": {"@id": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/#breadcrumb"}
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/#article",
+        "headline": "Коды маркировки для маркетплейсов: различия FBO, FBS и DBS",
+        "description": "Складской учет кодов Data Matrix при работе по моделям FBO, FBS и DBS.",
+        "mainEntityOfPage": {"@id": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/#webpage"},
+        "author": {"@id": "https://kosmoslogistic.com/#organization"},
+        "publisher": {"@id": "https://kosmoslogistic.com/#organization"},
+        "image": ["{{featuredImageUrl}}"],
+        "datePublished": "{{datePublishedISO}}",
+        "dateModified": "{{dateModifiedISO}}",
+        "inLanguage": "ru-RU",
+        "about": ["Маркировка товаров для маркетплейсов", "FBO", "FBS", "DBS", "Ozon", "Wildberries", "Яндекс Маркет", "Честный ЗНАК"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/#breadcrumb",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://kosmoslogistic.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://kosmoslogistic.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "Коды маркировки для FBO, FBS и DBS", "item": "https://kosmoslogistic.com/blog/kody-markirovki-fbo-fbs-dbs/"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- FAQPage — собирается из видимого FAQ: execution/faq_jsonld.py (не править вручную) -->
+  <!-- FAQPAGE:BEGIN -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Чем FBO отличается от FBS для маркированного товара?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "При FBO товар передается на склад маркетплейса партией. При FBS товар хранится на складе продавца или 3PL-оператора и комплектуется отдельно по каждому заказу"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда сканируется Data Matrix по FBS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Код сканируется после комплектации в операции «Упаковка» и привязывается к конкретному заказу"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Выполняется ли сканирование перед поставкой FBO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. По заданию поклажедателя склад сканирует коды при приемке и подготовке партии к поставке"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что выполняет склад по DBS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Склад хранит товар, комплектует заказ, упаковывает его, сканирует Data Matrix и формирует реестр фактической отгрузки"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Кто передает коды маркетплейсу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сторона и способ передачи определяются правилами площадки и согласованной схемой работы. В стандартной услуге «Космос-Логистик» передает реестр поклажедателю"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Кто выводит код из оборота?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ответственная сторона определяется товарной группой, моделью продаж и действующими правилами площадки. Склад не выполняет вывод из оборота без отдельного согласования и необходимых полномочий"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Формируется ли реестр по каждому заказу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. После сканирования в операции «Упаковка» формируется отдельный реестр кодов маркировки товарных единиц, вошедших в заказ"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что делать с маркированным возвратом?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Возвращенный товар сканируется, осматривается и помещается в карантинную зону до получения задания поклажедателя"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно использовать один код в двух заказах?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. При повторном появлении кода WMS фиксирует дубль, а соответствующая товарная единица направляется в карантинную зону"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем штрихкод маркетплейса отличается от Data Matrix системы «Честный ЗНАК»?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Штрихкод маркетплейса используется площадкой для идентификации товара, заказа или поставки. Data Matrix системы «Честный ЗНАК» является уникальным кодом маркировки конкретной товарной единицы"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQPAGE:END -->
+
+  <!-- CSS темы (на сайте подключен на страницах статей) -->
+  <link rel="stylesheet" href="../vendor/blog-single.css">
+  <!-- Подключить ПОСЛЕ blog-single.css -->
+  <link rel="stylesheet" href="../css/chz-blog.css">
+  <style>
+    /* ===== Только предпросмотр (pv-), на сайт не переносится ===== */
+    body { padding-top: 0; }
+    .pv-legend { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 12px 24px;
+      background: #fff; border-bottom: 1px solid #d8dfe8; font: 400 13px/1.5 "Manrope", sans-serif; color: #242a33; }
+    .pv-legend b { font-weight: 700; margin-right: auto; }
+    .single-hero__image picture { display: block; height: 100%; } /* <picture> — строчный элемент; img темы растянут на 100 % высоты рамки */
+    .pv-theme-block { max-width: 1300px; margin: 125px auto; padding: 48px 24px; border: 2px dashed #d8dfe8;
+      font: 600 14px/1.6 "Manrope", sans-serif; color: #5a7494; text-align: center; }
+    .pv-theme-block--inline { margin: 48px 0 0; padding: 32px 24px; }
+    .pv-theme-block--side { margin: 2px 0 0; padding: 32px 24px; }
+    @media (max-width: 640px) { .pv-legend { padding: 12px 16px; } .pv-theme-block { margin: 50px 16px; } .pv-theme-block--inline { margin: 48px 0 0; } .pv-theme-block--side { margin: 2px 0 0; } }
+  </style>
+</head>
+<body>
+
+<div class="pv-legend">
+  <b>Задание 5 · статья о FBO, FBS и DBS · предпросмотр</b>
+</div>
+
+<main>
+
+<!-- ===== Герой — шаблон темы из полей записи (заголовок, рубрика «Фулфилмент», обложка). НЕ переносится: только для предпросмотра ===== -->
+<section class="single-hero">
+  <div class="single-hero__inner">
+    <nav class="single-hero__breadcrumb" aria-label="Хлебные крошки">
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/">Главная</a><span class="single-hero__breadcrumb-sep">›</span>
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/blog/">Блог</a><span class="single-hero__breadcrumb-sep">›</span>
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/category/fulfilment/">Фулфилмент</a><span class="single-hero__breadcrumb-sep">›</span>
+      <span class="single-hero__breadcrumb-current">Коды маркировки для FBO, FBS и DBS</span>
+    </nav>
+    <div class="single-hero__content">
+      <span class="single-hero__category">Фулфилмент</span>
+      <h1 class="single-hero__title">Коды маркировки для маркетплейсов: различия FBO, FBS и DBS</h1>
+      <div class="single-hero__meta">
+        <span class="single-hero__date">Дата публикации</span>
+        <span class="single-hero__read-time">Время чтения</span>
+      </div>
+    </div>
+    <!-- Обложка = изображение записи (featured image): 1264 × 848 (3 : 2), WebP + запасной JPG из design/wp-content/uploads/chz/photos/.
+         Тема обрезает ее: шапка 16 : 7, карточки 16 : 9; og:image и BlogPosting.image — абсолютный URL этого файла после загрузки.
+         alt — заголовок статьи (как у обложек действующих статей) -->
+    <div class="single-hero__image">
+      <picture>
+        <source srcset="../wp-content/uploads/chz/photos/chz-b-marketplace-1264.webp" type="image/webp">
+        <img src="../wp-content/uploads/chz/photos/chz-b-marketplace-1264.jpg" alt="Коды маркировки для маркетплейсов: различия FBO, FBS и DBS" width="1264" height="848" loading="eager" decoding="async">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<section class="single-body">
+  <div class="single-body__inner">
+    <article class="single-body__article">
+      <div class="single-body__text">
+<!-- ======================== CHZ:BEGIN task5-article ========================
+     Задание 5. Содержимое записи /blog/kody-markirovki-fbo-fbs-dbs/ — всё до CHZ:END
+     вставить в редактор записи как HTML. Обертка .chz-b — стили design/css/chz-blog.css (после blog-single.css).
+     H2 с id="section-N" — по ним тема строит «Содержание» в сайдбаре.
+     ======================================================================== -->
+        <div class="chz-b">
+          <!-- Дата и предупреждение — под H1 (ТЗ). {{dateModified}} — подставить дату актуализации (та же, что dateModified в JSON-LD) -->
+          <div class="chz-b-note">
+            <p><strong>Дата актуализации: {{dateModified}}.</strong> Требования маркетплейсов и системы маркировки меняются. Перед поставкой или сборкой заказа необходимо проверить действующие инструкции конкретной торговой площадки и требования для соответствующей товарной группы</p>
+          </div>
+
+          <p>Порядок складской работы с кодами маркировки зависит от модели продаж. При FBO товар передается на склад маркетплейса. При FBS товар хранится и комплектуется на складе продавца или 3PL-оператора, а готовый заказ передается в логистику маркетплейса. При DBS продавец или привлеченный оператор хранит, комплектует и передает товар по выбранной схеме доставки</p>
+          <!-- Определение поклажедателя — первое употребление на странице (п. 2 общих требований ТЗ) -->
+          <div class="chz-b-note">
+            <p><strong>Поклажедатель</strong> — организация, индивидуальный предприниматель или физическое лицо, передающие товар на склад для хранения и складской обработки. «Космос-Логистик» выполняет приемку, хранение, комплектацию, упаковку и поэкземплярное сканирование кодов Data Matrix по заданию поклажедателя</p>
+            <p>Термин «поклажедатель» используется для стороны, передающей вещь хранителю по договору хранения</p>
+          </div>
+
+          <h2 id="section-1">Сравнение FBO, FBS и DBS</h2>
+          <div class="chz-b-table">
+            <table>
+              <thead><tr><th scope="col">Модель</th><th scope="col">Хранение товара</th><th scope="col">Комплектация заказа</th><th scope="col">Работа «Космос-Логистик» с кодами</th></tr></thead>
+              <tbody>
+                <tr><td>FBO</td><td>До поставки — у продавца или 3PL; после приемки — на складе маркетплейса</td><td>После приемки выполняется маркетплейсом</td><td>Сканирование при приемке на 3PL-склад, подготовка партии, упаковка, агрегация по согласованию и реестр кодов для поставки</td></tr>
+                <tr><td>FBS</td><td>На складе продавца или 3PL</td><td>Выполняется продавцом или 3PL</td><td>Комплектация по артикулу, сканирование Data Matrix в операции «Упаковка», реестр кодов каждого заказа</td></tr>
+                <tr><td>DBS</td><td>На складе продавца или 3PL</td><td>Выполняется продавцом или 3PL</td><td>Комплектация, упаковка, выходной контроль кодов и передача реестра поклажедателю</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="chz-b-note">
+            <p>Таблица описывает складские операции. Порядок передачи сведений, оформления документов и вывода кодов из оборота определяется правилами конкретной площадки, товарной группой и выбранной моделью продаж</p>
+          </div>
+          <!-- Сравнительная схема FBO / FBS / DBS (раздел ТЗ «Медиафайлы») — текстом в HTML, рядом таблица и разделы по моделям.
+               Шаги составлены по тексту статьи (таблица и разделы по моделям) — согласовано -->
+            <p class="chz-b-chain__label">FBO</p>
+            <ul class="chz-b-chain">
+              <li><span class="chz-b-chain__step">Приемка на склад «Космос-Логистик»</span></li>
+              <li><span class="chz-b-chain__step">Сканирование Data Matrix</span></li>
+              <li><span class="chz-b-chain__step">Входной реестр</span></li>
+              <li><span class="chz-b-chain__step">Подготовка партии</span></li>
+              <li><span class="chz-b-chain__step">Упаковка и агрегация по согласованию</span></li>
+              <li><span class="chz-b-chain__step">Реестр кодов для поставки</span></li>
+              <li><span class="chz-b-chain__step">Склад маркетплейса</span></li>
+            </ul>
+            <p class="chz-b-chain__label">FBS</p>
+            <ul class="chz-b-chain">
+              <li><span class="chz-b-chain__step">Хранение на складе «Космос-Логистик»</span></li>
+              <li><span class="chz-b-chain__step">Заказ</span></li>
+              <li><span class="chz-b-chain__step">Комплектация по артикулу</span></li>
+              <li><span class="chz-b-chain__step">Операция «Упаковка»: сканирование</span></li>
+              <li><span class="chz-b-chain__step">Выходной реестр</span></li>
+              <li><span class="chz-b-chain__step">Логистика маркетплейса</span></li>
+            </ul>
+            <p class="chz-b-chain__label">DBS</p>
+            <ul class="chz-b-chain">
+              <li><span class="chz-b-chain__step">Хранение на складе «Космос-Логистик»</span></li>
+              <li><span class="chz-b-chain__step">Заявка</span></li>
+              <li><span class="chz-b-chain__step">Отбор по артикулам</span></li>
+              <li><span class="chz-b-chain__step">Упаковка и сканирование</span></li>
+              <li><span class="chz-b-chain__step">Реестр отгрузки</span></li>
+              <li><span class="chz-b-chain__step">Доставка по согласованной схеме</span></li>
+            </ul>
+
+          <h2 id="section-2">Коды маркировки по FBO</h2>
+          <p>При FBO склад «Космос-Логистик» принимает маркированный товар от поклажедателя, сканирует Data Matrix каждой единицы и фиксирует коды в WMS. После завершения приемки формируется входной реестр XLSX или XML</p>
+          <p>Перед поставкой товар комплектуется по артикулам, упаковывается и подготавливается по требованиям площадки. При необходимости выполняется агрегация кодов единиц в короб и паллету. Реестр кодов передается поклажедателю для оформления поставки и документов</p>
+
+          <h2 id="section-3">Коды маркировки по FBS</h2>
+          <p>При FBS товар хранится на складе «Космос-Логистик». После получения заказа склад комплектует товар по артикулу и переводит собранный заказ в WMS в операцию «Упаковка»</p>
+          <p>В операции «Упаковка» код Data Matrix каждой единицы сканируется и привязывается к конкретному заказу. После завершения упаковки формируется выходной реестр XLSX или XML. Реестр передается поклажедателю до отгрузки заказа</p>
+
+          <h2 id="section-4">Коды маркировки по DBS</h2>
+          <p>При DBS товар хранится и комплектуется на складе «Космос-Логистик». После получения заявки выполняются отбор по артикулам, упаковка и сканирование Data Matrix каждой единицы</p>
+          <p>WMS привязывает коды к заказу. Поклажедателю передается реестр кодов фактической отгрузки. Порядок дальнейшей передачи сведений определяется правилами площадки и согласованной схемой доставки</p>
+
+          <h2 id="section-5">Работа с кодами на складе</h2>
+          <!-- Этапы — абзацы с названием этапа (без нумерации, как в ТЗ) -->
+<p><b>Приемка</b><br>Сканировать Data Matrix каждой единицы, сопоставить код с артикулом, зафиксировать результат в WMS и сформировать входной реестр</p>
+          <p><b>Хранение</b><br>Сохранить связь кода с товарной позицией, поставкой и поклажедателем</p>
+          <p><b>Комплектация</b><br>Отобрать товар по артикулу на основании заказа или задания на поставку</p>
+          <p><b>Упаковка</b><br>Повторно просканировать Data Matrix каждой единицы, связать коды с заказом и сформировать выходной реестр</p>
+          <p><b>Отгрузка</b><br>Передать поклажедателю XLSX- или XML-реестр кодов фактической отгрузки</p>
+
+          <h2 id="section-6">Ozon</h2>
+          <p>При подготовке маркированного товара для Ozon склад выполняет операции по заданию поклажедателя и в соответствии с действующей моделью продаж. Для FBO формируется партия поставки. Для FBS и realFBS код конкретной товарной единицы сканируется при сборке и упаковке заказа</p>
+          <p>Перед запуском работ поклажедатель передает действующие требования Ozon к соответствующей товарной группе и модели продаж</p>
+          <!-- Внешние ссылки (ТЗ): официальные инструкции Ozon — адреса предоставлены пользователем 2026-10-20 -->
+          <p><a class="chz-b-ext" href="https://seller-edu.ozon.ru/libra/fbo" target="_blank" rel="noopener">Инструкция Ozon «Продажа со склада Ozon (FBO)»</a></p>
+          <p><a class="chz-b-ext" href="https://seller-edu.ozon.ru/libra/fbs" target="_blank" rel="noopener">Инструкция Ozon «Продажа со своего склада (FBS)»</a></p>
+          <p><a class="chz-b-ext" href="https://seller-edu.ozon.ru/libra/rfbs" target="_blank" rel="noopener">Инструкция Ozon «Продажа со своего склада (realFBS)»</a></p>
+
+<h2 id="section-7">Wildberries</h2>
+          <p>При работе с Wildberries склад принимает и хранит маркированный товар, комплектует заказы по артикулам и сканирует код каждой единицы в операции «Упаковка»</p>
+          <p>Термины и обязательные поля в кабинете продавца применять в соответствии с действующей инструкцией Wildberries. Перед запуском поклажедатель передает требования к товарной группе, модели продаж и передаче кодов</p>
+          <!-- Внешняя ссылка (ТЗ): официальная инструкция Wildberries -->
+          <p><a class="chz-b-ext" href="https://seller.wildberries.ru/instructions/ru/ru/subcategory/labeling-items-and-orders-in-fbs" target="_blank" rel="noopener">Инструкция Wildberries «Маркировка товаров и заказов по FBS»</a></p>
+
+<h2 id="section-8">Яндекс Маркет</h2>
+          <p>При работе с Яндекс Маркетом склад выполняет приемку, хранение, комплектацию, упаковку и сканирование кодов по заданию поклажедателя. Процесс разделяется по моделям FBY, FBS и DBS</p>
+          <p>Для FBS и DBS реестр кодов сформированного заказа передается поклажедателю до отгрузки. Порядок передачи кодов площадке и оформления бизнес-заказов определяется действующей инструкцией Яндекс Маркета</p>
+          <!-- Внешняя ссылка (ТЗ): официальная инструкция Яндекс Маркета (метка ysclid из адреса убрана — служебный параметр поиска Яндекса) -->
+          <p><a class="chz-b-ext" href="https://yandex.ru/support/marketplace/ru/orders/cz" target="_blank" rel="noopener">Инструкция Яндекс Маркет «Как продавать товары с маркировкой»</a></p>
+
+<h2 id="section-9">Возвраты</h2>
+          <p>Возвращенный маркированный товар сканируется, осматривается и помещается в карантинную зону. Склад фиксирует код, артикул, состояние товара и причину возврата</p>
+          <p>Поклажедатель определяет дальнейший сценарий: возврат в доступный остаток, переупаковка, перемаркировка, возврат поставщику, списание или другое действие</p>
+
+          <h2 id="section-10">Ошибки при подготовке заказа</h2>
+          <ul>
+            <li>Код не считывается терминалом сбора данных</li>
+            <li>Этикетка отсутствует или повреждена</li>
+            <li>Код повторно зарегистрирован в учетном контуре склада</li>
+            <li>Код не соответствует артикулу</li>
+            <li>Data Matrix закрыт транспортной этикеткой или упаковочным материалом</li>
+            <li>Код не привязан к конкретному заказу</li>
+            <li>В реестр включен код другой товарной единицы</li>
+            <li>Для площадки использована неактуальная инструкция</li>
+          </ul>
+
+          <h2 id="section-11">Чек-лист перед запуском</h2>
+          <ul class="chz-b-list--check">
+            <li>Определить товарную группу</li>
+            <li>Определить модель: FBO, FBS, DBS или несколько моделей</li>
+            <li>Передать перечень артикулов</li>
+            <li>Передать ожидаемое количество единиц</li>
+            <li>Утвердить сопоставление артикулов и кодов</li>
+            <li>Утвердить формат реестра XLSX или XML</li>
+            <li>Утвердить порядок передачи кодов маркетплейсу</li>
+            <li>Утвердить сторону, выполняющую операции в ЭДО и ГИС МТ</li>
+            <li>Утвердить порядок обработки возвратов</li>
+            <li>Проверить действующие инструкции площадки</li>
+          </ul>
+
+          <h2 id="section-12">Часто задаваемые вопросы</h2>
+          <!-- FAQ текстом, как во всех статьях блога. Совпадает с FAQPage в <head> дословно. В ТЗ заголовок «FAQ» — переименован по решению пользователя.
+               Вопрос 10: «Data Matrix «Честного ЗНАКа»» (ТЗ) → «Data Matrix системы «Честный ЗНАК»» — п. 4 общих требований, согласовано -->
+          <div class="chz-b-faq" id="chz-faq">
+            <p><b>Чем FBO отличается от FBS для маркированного товара?</b> При FBO товар передается на склад маркетплейса партией. При FBS товар хранится на складе продавца или 3PL-оператора и комплектуется отдельно по каждому заказу</p>
+            <p><b>Когда сканируется Data Matrix по FBS?</b> Код сканируется после комплектации в операции «Упаковка» и привязывается к конкретному заказу</p>
+            <p><b>Выполняется ли сканирование перед поставкой FBO?</b> Да. По заданию поклажедателя склад сканирует коды при приемке и подготовке партии к поставке</p>
+            <p><b>Что выполняет склад по DBS?</b> Склад хранит товар, комплектует заказ, упаковывает его, сканирует Data Matrix и формирует реестр фактической отгрузки</p>
+            <p><b>Кто передает коды маркетплейсу?</b> Сторона и способ передачи определяются правилами площадки и согласованной схемой работы. В стандартной услуге «Космос-Логистик» передает реестр поклажедателю</p>
+            <p><b>Кто выводит код из оборота?</b> Ответственная сторона определяется товарной группой, моделью продаж и действующими правилами площадки. Склад не выполняет вывод из оборота без отдельного согласования и необходимых полномочий</p>
+            <p><b>Формируется ли реестр по каждому заказу?</b> Да. После сканирования в операции «Упаковка» формируется отдельный реестр кодов маркировки товарных единиц, вошедших в заказ</p>
+            <p><b>Что делать с маркированным возвратом?</b> Возвращенный товар сканируется, осматривается и помещается в карантинную зону до получения задания поклажедателя</p>
+            <p><b>Можно использовать один код в двух заказах?</b> Нет. При повторном появлении кода WMS фиксирует дубль, а соответствующая товарная единица направляется в карантинную зону</p>
+            <p><b>Чем штрихкод маркетплейса отличается от Data Matrix системы «Честный ЗНАК»?</b> Штрихкод маркетплейса используется площадкой для идентификации товара, заказа или поставки. Data Matrix системы «Честный ЗНАК» является уникальным кодом маркировки конкретной товарной единицы</p>
+          </div>
+
+          <!-- CTA. Кнопка — существующая всплывающая форма сайта #callback-popup; ссылки — перелинковка ТЗ (анкоры из таблицы) -->
+          <div class="chz-b-cta">
+            <div class="chz-b-cta__label"><span>Услуга склада</span></div>
+            <h2>Подключить фулфилмент маркированных товаров</h2>
+            <p>Укажите маркетплейс, модель продаж, товарную группу, количество единиц и число артикулов. Подготовим схему приемки, хранения, комплектации и передачи реестров</p>
+            <div class="chz-b-cta__actions">
+              <a class="btn btn_white" href="#callback-popup" data-fancybox data-event="chestny_znak_calculation_click">Получить расчет фулфилмента</a>
+              <a class="chz-b-cta__link" href="task2-markirovka.html" data-event="article_to_service_click">Складская обработка маркированных товаров</a>
+            </div>
+            <!-- Действующие страницы фулфилмента (ТЗ: CTA статьи + таблица перелинковки) -->
+            <div class="chz-b-cta__links">
+              <a class="chz-b-cta__link" href="https://kosmoslogistic.com/services/fulfilment-dlya-ozon/" data-event="article_to_service_click">Фулфилмент для Ozon</a>
+              <a class="chz-b-cta__link" href="https://kosmoslogistic.com/services/fulfilment-dlya-wildberries/" data-event="article_to_service_click">Фулфилмент для Wildberries</a>
+              <a class="chz-b-cta__link" href="https://kosmoslogistic.com/services/fulfilment/" data-event="article_to_service_click">Фулфилмент по FBO, FBS и DBS</a>
+            </div>
+          </div>
+        </div>
+<!-- ======================== CHZ:END task5-article ======================== -->
+      </div>
+      <!-- «Поделиться» выводит тема — не переносится -->
+      <div class="pv-theme-block pv-theme-block--inline">Здесь тема выводит блок «Поделиться» <code>.single-body__share</code>: Telegram, WhatsApp, «Скопировать ссылку» — ссылки на эту статью тема строит сама</div>
+    </article>
+
+    <!-- ===== Сайдбар — шаблон темы («Содержание» строится из H2 с id="section-N", рубрики). НЕ переносится ===== -->
+    <aside class="single-body__sidebar">
+      <div class="single-body__sidebar-block">
+        <div class="single-body__sidebar-title">Содержание</div>
+        <div class="single-body__toc">
+          <a class="single-body__toc-item" href="#section-1"><span class="single-body__toc-num">01</span>Сравнение FBO, FBS и DBS</a>
+          <a class="single-body__toc-item" href="#section-2"><span class="single-body__toc-num">02</span>Коды маркировки по FBO</a>
+          <a class="single-body__toc-item" href="#section-3"><span class="single-body__toc-num">03</span>Коды маркировки по FBS</a>
+          <a class="single-body__toc-item" href="#section-4"><span class="single-body__toc-num">04</span>Коды маркировки по DBS</a>
+          <a class="single-body__toc-item" href="#section-5"><span class="single-body__toc-num">05</span>Работа с кодами на складе</a>
+          <a class="single-body__toc-item" href="#section-6"><span class="single-body__toc-num">06</span>Ozon</a>
+          <a class="single-body__toc-item" href="#section-7"><span class="single-body__toc-num">07</span>Wildberries</a>
+          <a class="single-body__toc-item" href="#section-8"><span class="single-body__toc-num">08</span>Яндекс Маркет</a>
+          <a class="single-body__toc-item" href="#section-9"><span class="single-body__toc-num">09</span>Возвраты</a>
+          <a class="single-body__toc-item" href="#section-10"><span class="single-body__toc-num">10</span>Ошибки при подготовке заказа</a>
+          <a class="single-body__toc-item" href="#section-11"><span class="single-body__toc-num">11</span>Чек-лист перед запуском</a>
+          <a class="single-body__toc-item" href="#section-12"><span class="single-body__toc-num">12</span>Часто задаваемые вопросы</a>
+        </div>
+      </div>
+      <!-- «Категории» выводит тема — не переносится -->
+      <div class="pv-theme-block pv-theme-block--side">Здесь тема выводит блок «Категории» <code>.single-body__cat-list</code> — рубрики блога с количеством статей</div>
+    </aside>
+  </div>
+</section>
+
+<!-- «Похожие статьи» выводит тема — не переносится -->
+<div class="pv-theme-block">Здесь тема выводит секцию «Читайте также · Похожие статьи» <code>.related</code> — 3 карточки записей, тема подбирает их автоматически.<br>Чтобы рядом со статьей показывались другие статьи о маркировке (задания 3 и 4), всем трем назначить рубрику «Фулфилмент»</div>
+
+</main>
+<script src="../js/chz-preview.js"></script>
+</body>
+</html>

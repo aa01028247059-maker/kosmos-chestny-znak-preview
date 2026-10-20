@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO (ТЗ, задание 3). На сайте задаются через Yoast: фокусная фраза «валидация кодов «Честный ЗНАК»», ярлык validaciya-kodov-chestnyj-znak-na-sklade ===== -->
+  <title>Валидация кодов «Честный ЗНАК»: что проверяет склад</title>
+  <meta name="description" content="Как склад считывает Data Matrix, сопоставляет код с артикулом, выявляет дубли и фиксирует результат в WMS при приемке и отгрузке.">
+  <link rel="canonical" href="https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/">
+  <meta property="og:title" content="Валидация кодов «Честный ЗНАК»: что проверяет склад">
+  <meta property="og:description" content="Как склад считывает Data Matrix, сопоставляет код с артикулом, выявляет дубли и фиксирует результат в WMS при приемке и отгрузке.">
+  <meta property="og:url" content="https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/">
+  <meta property="og:type" content="article">
+  <!-- og:image — абсолютный URL обложки статьи ≥ 1200 px, подставить после загрузки -->
+  <meta property="og:image" content="{{featuredImageUrl}}">
+
+  <!-- JSON-LD из ТЗ (задание 3): WebPage, BlogPosting, BreadcrumbList. Organization и WebSite — глобальные на сайте.
+       Плейсхолдеры {{…}} заменяет разработчик: реальная обложка ≥ 1200 px и фактические даты ISO 8601. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/#webpage",
+        "url": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/",
+        "name": "Что такое валидация кодов «Честный ЗНАК» на складе",
+        "isPartOf": {"@id": "https://kosmoslogistic.com/#website"},
+        "breadcrumb": {"@id": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/#breadcrumb"}
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/#article",
+        "headline": "Что такое валидация кодов «Честный ЗНАК» на складе",
+        "description": "Складская проверка Data Matrix при приемке и отгрузке товара.",
+        "mainEntityOfPage": {"@id": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/#webpage"},
+        "author": {"@id": "https://kosmoslogistic.com/#organization"},
+        "publisher": {"@id": "https://kosmoslogistic.com/#organization"},
+        "image": ["{{featuredImageUrl}}"],
+        "datePublished": "{{datePublishedISO}}",
+        "dateModified": "{{dateModifiedISO}}",
+        "inLanguage": "ru-RU",
+        "about": ["Честный ЗНАК", "Data Matrix", "Валидация кодов маркировки", "WMS"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/#breadcrumb",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://kosmoslogistic.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://kosmoslogistic.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "Валидация кодов «Честный ЗНАК»", "item": "https://kosmoslogistic.com/blog/validaciya-kodov-chestnyj-znak-na-sklade/"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- FAQPage — собирается из видимого FAQ: execution/faq_jsonld.py (не править вручную) -->
+  <!-- FAQPAGE:BEGIN -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что означает валидация кода маркировки?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Это складская проверка Data Matrix: считывание терминалом сбора данных, сопоставление с артикулом и фиксация результата в WMS"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сканируется ли каждая единица?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. При поэкземплярном учете сканируется Data Matrix каждой маркированной единицы"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Может ли WMS выявить дубль?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. WMS выявляет повторное появление кода в учетном контуре склада"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Проверяет ли склад соответствие кода артикулу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Отсканированный код сопоставляется с артикулом товара"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Проверяется ли статус кода в ГИС МТ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Онлайн-проверка государственного статуса кода не входит в стандартную складскую услугу"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что происходит при ошибке?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Товар помещается в карантинную зону до получения задания поклажедателя"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как подтверждается результат валидации?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Результат подтверждается реестром кодов в формате XLSX или XML"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQPAGE:END -->
+
+  <!-- CSS темы (на сайте подключен на страницах статей) -->
+  <link rel="stylesheet" href="../vendor/blog-single.css">
+  <!-- Подключить ПОСЛЕ blog-single.css -->
+  <link rel="stylesheet" href="../css/chz-blog.css">
+  <style>
+    /* ===== Только предпросмотр (pv-), на сайт не переносится ===== */
+    body { padding-top: 0; }
+    .pv-legend { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 12px 24px;
+      background: #fff; border-bottom: 1px solid #d8dfe8; font: 400 13px/1.5 "Manrope", sans-serif; color: #242a33; }
+    .pv-legend b { font-weight: 700; margin-right: auto; }
+    .single-hero__image picture { display: block; height: 100%; } /* <picture> — строчный элемент; img темы растянут на 100 % высоты рамки */
+    .pv-theme-block { max-width: 1300px; margin: 125px auto; padding: 48px 24px; border: 2px dashed #d8dfe8;
+      font: 600 14px/1.6 "Manrope", sans-serif; color: #5a7494; text-align: center; }
+    .pv-theme-block--inline { margin: 48px 0 0; padding: 32px 24px; }
+    .pv-theme-block--side { margin: 2px 0 0; padding: 32px 24px; }
+    @media (max-width: 640px) { .pv-legend { padding: 12px 16px; } .pv-theme-block { margin: 50px 16px; } .pv-theme-block--inline { margin: 48px 0 0; } .pv-theme-block--side { margin: 2px 0 0; } }
+  </style>
+</head>
+<body>
+
+<div class="pv-legend">
+  <b>Задание 3 · статья о валидации · предпросмотр</b>
+</div>
+
+<main>
+
+<!-- ===== Герой — шаблон темы из полей записи (заголовок, рубрика «Фулфилмент», обложка). НЕ переносится: только для предпросмотра ===== -->
+<section class="single-hero">
+  <div class="single-hero__inner">
+    <nav class="single-hero__breadcrumb" aria-label="Хлебные крошки">
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/">Главная</a><span class="single-hero__breadcrumb-sep">›</span>
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/blog/">Блог</a><span class="single-hero__breadcrumb-sep">›</span>
+      <a class="single-hero__breadcrumb-link" href="https://kosmoslogistic.com/category/fulfilment/">Фулфилмент</a><span class="single-hero__breadcrumb-sep">›</span>
+      <span class="single-hero__breadcrumb-current">Валидация кодов «Честный ЗНАК»</span>
+    </nav>
+    <div class="single-hero__content">
+      <span class="single-hero__category">Фулфилмент</span>
+      <h1 class="single-hero__title">Что такое валидация кодов «Честный ЗНАК» на складе</h1>
+      <div class="single-hero__meta">
+        <span class="single-hero__date">Дата публикации</span>
+        <span class="single-hero__read-time">Время чтения</span>
+      </div>
+    </div>
+    <!-- Обложка = изображение записи (featured image): 1264 × 848 (3 : 2), WebP + запасной JPG из design/wp-content/uploads/chz/photos/.
+         Тема обрезает ее: шапка 16 : 7, карточки 16 : 9; og:image и BlogPosting.image — абсолютный URL этого файла после загрузки.
+         alt — заголовок статьи (как у обложек действующих статей) -->
+    <div class="single-hero__image">
+      <picture>
+        <source srcset="../wp-content/uploads/chz/photos/chz-b-validation-1264.webp" type="image/webp">
+        <img src="../wp-content/uploads/chz/photos/chz-b-validation-1264.jpg" alt="Что такое валидация кодов «Честный ЗНАК» на складе" width="1264" height="848" loading="eager" decoding="async">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<section class="single-body">
+  <div class="single-body__inner">
+    <article class="single-body__article">
+      <div class="single-body__text">
+<!-- ======================== CHZ:BEGIN task3-article ========================
+     Задание 3. Содержимое записи /blog/validaciya-kodov-chestnyj-znak-na-sklade/ — всё до CHZ:END
+     вставить в редактор записи как HTML. Обертка .chz-b — стили design/css/chz-blog.css (после blog-single.css).
+     H2 с id="section-N" — по ним тема строит «Содержание» в сайдбаре.
+     ======================================================================== -->
+        <div class="chz-b">
+          <p>Валидация кода «Честный ЗНАК» на складе — это проверка Data Matrix при физической обработке товара. Склад считывает код терминалом сбора данных, сопоставляет его с артикулом и фиксирует результат в WMS</p>
+          <!-- Определение поклажедателя — первое употребление на странице (п. 2 общих требований ТЗ) -->
+          <div class="chz-b-note">
+            <p><strong>Поклажедатель</strong> — организация, индивидуальный предприниматель или физическое лицо, передающие товар на склад для хранения и складской обработки. По заданию поклажедателя валидация выполняется при приемке, перед отгрузкой или на обоих этапах</p>
+            <p>Термин «поклажедатель» используется для стороны, передающей вещь хранителю по договору хранения</p>
+          </div>
+
+          <h2 id="section-1">Какие проверки входят в валидацию</h2>
+          <div class="chz-b-table chz-b-table--fit">
+            <table>
+              <thead><tr><th scope="col">Уровень проверки</th><th scope="col">Выполняемая операция</th></tr></thead>
+              <tbody>
+                <tr><td>Считывание</td><td>ТСД считывает Data Matrix с товарной единицы</td></tr>
+                <tr><td>Сопоставление</td><td>WMS сопоставляет код с артикулом</td></tr>
+                <tr><td>Контроль дубля</td><td>WMS выявляет повторное появление кода в складском учетном контуре</td></tr>
+                <tr><td>Привязка к поставке</td><td>Код связывается с конкретной приемкой</td></tr>
+                <tr><td>Привязка к заказу</td><td>Код связывается с конкретной отгрузкой</td></tr>
+                <tr><td>Партия и срок годности</td><td>Данные учитываются при наличии и настроенном задании</td></tr>
+                <tr><td>Государственный статус</td><td>Онлайн-запрос в ГИС МТ не входит в стандартную услугу</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Схема валидации (раздел ТЗ «Медиафайлы», статья о валидации) — текстом в HTML -->
+          <ul class="chz-b-chain">
+            <li><span class="chz-b-chain__step">Считывание Data Matrix</span></li>
+            <li><span class="chz-b-chain__step">Сопоставление с артикулом</span></li>
+            <li><span class="chz-b-chain__step">Проверка дубля в WMS</span></li>
+            <li><span class="chz-b-chain__step">Привязка к поставке или заказу</span></li>
+            <li><span class="chz-b-chain__step">Реестр XLSX/XML</span></li>
+          </ul>
+
+          <h2 id="section-2">Валидация при приемке</h2>
+          <p>После выгрузки товар принимается по артикулам. Код каждой маркированной единицы сканируется терминалом сбора данных. WMS связывает Data Matrix с артикулом, поставкой и поклажедателем</p>
+          <p>После завершения сканирования формируется входной реестр. Реестр передается поклажедателю в формате XLSX или XML до размещения товара на хранение</p>
+
+          <h2 id="section-3">Валидация перед отгрузкой</h2>
+          <p>После комплектации заказ переводится в WMS в операцию «Упаковка». Сотрудник выполняет дополнительную упаковку и сканирует Data Matrix каждой единицы, вошедшей в заказ</p>
+          <p>WMS привязывает коды к номеру заказа. После завершения операции формируется выходной реестр кодов конкретной отгрузки</p>
+
+          <h2 id="section-4">Какие ошибки выявляет склад</h2>
+          <ul>
+            <li>Data Matrix не считывается терминалом сбора данных</li>
+            <li>Этикетка отсутствует или повреждена</li>
+            <li>Код повторно появился в учетном контуре склада</li>
+            <li>Код не соответствует артикулу</li>
+            <li>Данные о партии или сроке годности не соответствуют заданию при настроенном учете</li>
+            <li>Код отсутствует в составе ожидаемой поставки или заказа</li>
+          </ul>
+
+          <h2 id="section-5">Что происходит с проблемным товаром</h2>
+          <p>Проблемная товарная единица отделяется от доступного остатка и помещается в карантинную зону. Склад фиксирует причину и передает информацию поклажедателю</p>
+          <p>Дальнейшее действие выполняется по заданию поклажедателя: повторная проверка, исправление задания, переупаковка, перемаркировка, возврат, списание или другой согласованный сценарий</p>
+
+          <h2 id="section-6">Что получает поклажедатель</h2>
+          <ul>
+            <li>Входной реестр кодов после приемки</li>
+            <li>Выходной реестр кодов по каждому сформированному заказу</li>
+            <li>XLSX-файл для просмотра и обработки</li>
+            <li>XML-файл для машинной обработки</li>
+            <li>Информацию о выявленных проблемных единицах</li>
+            <li>Реестр агрегации при выполнении соответствующей операции</li>
+          </ul>
+
+          <h2 id="section-7">Складская проверка и ГИС МТ</h2>
+          <p>Складская валидация подтверждает результат физического сканирования и обработки кода в WMS. Она не заменяет онлайн-проверку государственного статуса кода в ГИС МТ</p>
+          <!-- «Контур» — подставить точное коммерческое название сервиса (п. 10 общих требований ТЗ) -->
+          <p>В стандартной схеме «Космос-Логистик» передает поклажедателю реестры XLSX или XML. Обмен электронными документами через оператора ЭДО «Контур» и передача документов в ГИС МТ выполняются по отдельному соглашению</p>
+
+          <h2 id="section-8">Часто задаваемые вопросы</h2>
+          <!-- FAQ текстом, как во всех статьях блога. Совпадает с FAQPage в <head> дословно -->
+          <div class="chz-b-faq" id="chz-faq">
+            <p><b>Что означает валидация кода маркировки?</b> Это складская проверка Data Matrix: считывание терминалом сбора данных, сопоставление с артикулом и фиксация результата в WMS</p>
+            <p><b>Сканируется ли каждая единица?</b> Да. При поэкземплярном учете сканируется Data Matrix каждой маркированной единицы</p>
+            <p><b>Может ли WMS выявить дубль?</b> Да. WMS выявляет повторное появление кода в учетном контуре склада</p>
+            <p><b>Проверяет ли склад соответствие кода артикулу?</b> Да. Отсканированный код сопоставляется с артикулом товара</p>
+            <p><b>Проверяется ли статус кода в ГИС МТ?</b> Онлайн-проверка государственного статуса кода не входит в стандартную складскую услугу</p>
+            <p><b>Что происходит при ошибке?</b> Товар помещается в карантинную зону до получения задания поклажедателя</p>
+            <p><b>Как подтверждается результат валидации?</b> Результат подтверждается реестром кодов в формате XLSX или XML</p>
+          </div>
+
+          <!-- CTA. Кнопка — существующая всплывающая форма сайта #callback-popup; ссылка — перелинковка ТЗ (анкор из таблицы) -->
+          <div class="chz-b-cta">
+            <div class="chz-b-cta__label"><span>Услуга склада</span></div>
+            <h2>Заказать валидацию кодов на складе</h2>
+            <p>Укажите количество единиц, количество артикулов и требуемые контрольные точки. Подготовим регламент обработки и расчет стоимости</p>
+            <div class="chz-b-cta__actions">
+              <a class="btn btn_white" href="#callback-popup" data-fancybox data-event="chestny_znak_calculation_click">Рассчитать валидацию кодов</a>
+              <a class="chz-b-cta__link" href="task2-markirovka.html" data-event="article_to_service_click">Заказать валидацию кодов на складе</a>
+            </div>
+          </div>
+        </div>
+<!-- ======================== CHZ:END task3-article ======================== -->
+      </div>
+      <!-- «Поделиться» выводит тема — не переносится -->
+      <div class="pv-theme-block pv-theme-block--inline">Здесь тема выводит блок «Поделиться» <code>.single-body__share</code>: Telegram, WhatsApp, «Скопировать ссылку» — ссылки на эту статью тема строит сама</div>
+    </article>
+
+    <!-- ===== Сайдбар — шаблон темы («Содержание» строится из H2 с id="section-N», рубрики). НЕ переносится ===== -->
+    <aside class="single-body__sidebar">
+      <div class="single-body__sidebar-block">
+        <div class="single-body__sidebar-title">Содержание</div>
+        <div class="single-body__toc">
+          <a class="single-body__toc-item" href="#section-1"><span class="single-body__toc-num">01</span>Какие проверки входят в валидацию</a>
+          <a class="single-body__toc-item" href="#section-2"><span class="single-body__toc-num">02</span>Валидация при приемке</a>
+          <a class="single-body__toc-item" href="#section-3"><span class="single-body__toc-num">03</span>Валидация перед отгрузкой</a>
+          <a class="single-body__toc-item" href="#section-4"><span class="single-body__toc-num">04</span>Какие ошибки выявляет склад</a>
+          <a class="single-body__toc-item" href="#section-5"><span class="single-body__toc-num">05</span>Что происходит с проблемным товаром</a>
+          <a class="single-body__toc-item" href="#section-6"><span class="single-body__toc-num">06</span>Что получает поклажедатель</a>
+          <a class="single-body__toc-item" href="#section-7"><span class="single-body__toc-num">07</span>Складская проверка и ГИС МТ</a>
+          <a class="single-body__toc-item" href="#section-8"><span class="single-body__toc-num">08</span>Часто задаваемые вопросы</a>
+        </div>
+      </div>
+      <!-- «Категории» выводит тема — не переносится -->
+      <div class="pv-theme-block pv-theme-block--side">Здесь тема выводит блок «Категории» <code>.single-body__cat-list</code> — рубрики блога с количеством статей</div>
+    </aside>
+  </div>
+</section>
+<!-- «Похожие статьи» выводит тема — не переносится -->
+<div class="pv-theme-block">Здесь тема выводит секцию «Читайте также · Похожие статьи» <code>.related</code> — 3 карточки записей, тема подбирает их автоматически.<br>Чтобы рядом со статьей показывались другие статьи о маркировке (задания 4 и 5), всем трем назначить рубрику «Фулфилмент»</div>
+
+</main>
+<script src="../js/chz-preview.js"></script>
+</body>
+</html>
